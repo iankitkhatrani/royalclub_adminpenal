@@ -3,6 +3,10 @@ import {useNavigate} from 'react-router-dom';
 import React, { useState,useContext,useEffect } from 'react';
 import offerContext from '../../context/offerContext';
 
+
+import edit from "../../assets/images/edit.png";
+import trash from "../../assets/images/trash.png";
+
 function PlayerInfo({ UserId,img,UserName,GamePlay,MainWallet,Status}) {
 
   const navigate = useNavigate();
@@ -63,7 +67,7 @@ function PlayerInfo({ UserId,img,UserName,GamePlay,MainWallet,Status}) {
             "padding": "5px 10px",
             "cursor": "pointer",
             "border-radius": "4px"}} onClick={ () => navigateToContacts(UserId,img,UserName,GamePlay,MainWallet,Status) } >
-            <img style={{"width": "15px","height": "15px","margin": "10px"}} src="https://cdn3.iconfinder.com/data/icons/feather-5/24/edit-512.png" />
+            <img style={{"width": "30px","height": "30px","margin": "10px"}} src={edit} />
           </button>
           <button styles={{"margin": "1px",
           "background-color": "white",
@@ -72,8 +76,8 @@ function PlayerInfo({ UserId,img,UserName,GamePlay,MainWallet,Status}) {
           "padding": "5px 10px",
           "cursor": "pointer",
           "border-radius": "4px"}} onClick={ () => DeleteUser(UserId) } >
-          <img style={{"width": "15px","height": "15px","margin": "10px"}} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSewqWoGi9-fXmd6_SKqNkg6-kmo7VctpXAhgBiKaliSA&s" />
-            
+         <img style={{"width": "30px","height": "30px","margin": "10px"}} src={trash} />
+              
           </button>
         </div>
       </td>
