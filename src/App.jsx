@@ -33,7 +33,7 @@ function App() {
     console.log("URL ",url)
 
     if(url[1] != "/signin"){
-      window.location.href =   'http://51.21.131.138:5177/signin'; //"http://192.168.0.203:5177/signin" 
+      window.location.href =   'http://royalsclub.in:5177/signin'; //"http://192.168.0.203:5177/signin" 
       
       return false
     }
