@@ -3,7 +3,7 @@ import Home from "./pages/home";
 import HomeTwo from "./pages/homeTwo";
 import Statistics from "./pages/statistics";
 import Analytics from "./pages/analytics";
-import Transaction from "./pages/transaction";
+
 import MyWallet from "./pages/myWallet";
 import Inbox from "./pages/inbox";
 import Integrations from "./pages/integrations";
@@ -13,6 +13,8 @@ import History from "./pages/history";
 import Support from "./pages/supportTicket";
 import Settings from "./pages/settings";
 import SignIn from "./pages/signin";
+import SignInAdmin from "./pages/signinadmin";
+
 import SignUp from "./pages/signup";
 import ComingSoon from "./pages/commingSoon";
 import Error from "./pages/error";
@@ -26,7 +28,7 @@ import Security from "./pages/settings/security";
 import TermsAndCondition from "./pages/settings/terms&condition";
 import HomeFive from "./pages/homeFive";
 
-
+import Transaction from "./pages/transaction";
 import Dashboard from "./pages/dashboard";
 import GameHistory from "./pages/GameHistory";
 import GameLogic from "./pages/gameLogic";
@@ -42,9 +44,37 @@ import Botadd from './pages/Botadd'
 import PlayerAdd from './pages/Playeradd'
 import Mail from './pages/Mail'
 import Playeredit from './pages/PlayerUpdate'
-import CoinManagement from './pages/CoinManagement'
-import Chnagepwd from './pages/Chnagepwd'
 
+
+
+import CoinManagement from './pages/CoinManagement'
+
+import AgentDashboard from "./pages/agentdashboard";
+import AdminDashboard from "./pages/shopdashboard";
+
+import AgentManagement from "./pages/agentManagement";
+import Agentdit from './pages/AgentUpdate'
+import AgentAdd from './pages/agentadd'
+
+
+import AdminManagement from "./pages/AdminManagment";
+import AdminAdd from './pages/adminadd'
+import Adminedit from './pages/AdminUpdate'
+
+
+import Commission from './pages/commission'
+import GamebetInfo from './pages/playingtabledata'
+
+
+import BetHistoryinfo from './pages/BetHistory'
+
+
+import Chnagepwd from './pages/Chnagepwd'
+import SubAgentTranscation from './pages/SubAgentTranscation'
+import AgentTranscation from './pages/AgentTranscation'
+import AdminTranscation from './pages/AdminTranscation'
+
+import TableTranscation from './pages/tableManagment'
 
 
 
@@ -54,8 +84,40 @@ const router = createBrowserRouter([
     Component: Layout,
     children: [
       {
+        path: "/TableTranscation",
+        element: <TableTranscation />,
+      },
+      {
+        path: "/AdminTranscation",
+        element: <AdminTranscation />,
+      },
+      {
+        path: "/AgentTranscation",
+        element: <AgentTranscation />,
+      },
+      {
+        path: "/SubAgentTranscation",
+        element: <SubAgentTranscation />,
+      },
+      {
+        path: "/betHistory",
+        element: <BetHistoryinfo />,
+      },
+      {
+        path: "/gamebetInfo",
+        element: <GamebetInfo />,
+      },
+      {
         path: "/dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "/agentdashboard",
+        element: <AgentDashboard />,
+      },
+      {
+        path: "/admindashboard",
+        element: <AdminDashboard />,
       },
       {
         path: "/home-3",
@@ -90,6 +152,35 @@ const router = createBrowserRouter([
         path: "/transaction",
         element: <Transaction />,
       },
+      {
+        path: "/agentmanagement",
+        element: <AgentManagement />,
+      },
+      {
+        path: "/agentedit",
+        element: <Agentdit />,
+      },
+      {
+        path: "/agentadd",
+        element: <AgentAdd />,
+      },
+      {
+        path: "/adminedit",
+        element: <Adminedit />,
+      },
+      {
+        path: "/adminadd",
+        element: <AdminAdd />,
+      },
+      {
+        path: "/adminmanagement",
+        element: <AdminManagement />,
+      },
+      {
+        path: "/commission",
+        element: <Commission />,
+      },
+
       {
         path: "/playeradd",
         element: <PlayerAdd />,
@@ -189,6 +280,10 @@ const router = createBrowserRouter([
   {
     path: "/signIn",
     element: <SignIn />,
+  },
+  {
+    path: "/signInadmin",
+    element: <SignInAdmin />,
   },
   {
     path: "/signup",

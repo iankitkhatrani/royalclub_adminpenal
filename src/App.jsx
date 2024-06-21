@@ -32,11 +32,12 @@ function App() {
     var url = window.location.href.split("5177")
     console.log("URL ",url)
 
-    if(url[1] != "/signin"){
-      window.location.href =    'http://royalsclub.in:5177/signin'; //"http://192.168.0.203:5177/signin" //
+    if(url[1].toLowerCase() != "/signInadmin".toLowerCase() && url[1] != "/signin"){
+      window.location.href =    'http://royalsclub.in:5177/signin'; // "http://192.168.0.203:5177/signin" //
       
       return false
     }
+
     //return (<Router><Login/></Router>)
   }
 

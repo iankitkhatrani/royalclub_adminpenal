@@ -21,7 +21,7 @@ function Sidebar({ handleActive }) {
   const [navSubItem, setNavSubItem] = useState(0);
 
   const handelSubMenu = (item) => {
-    
+
     setNavSubItem(item);
   };
 
@@ -67,7 +67,6 @@ function Sidebar({ handleActive }) {
       <div className="sidebar-body overflow-style-none relative z-30 h-screen w-full overflow-y-scroll pb-[200px] pl-[48px] pt-[14px]">
         <div className="nav-wrapper mb-[36px] pr-[50px]">
           <div className="item-wrapper mb-5">
-
             <ul className="mt-2.5">
               <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/dashboardr" ? "nav-active" : ""
@@ -124,6 +123,62 @@ function Sidebar({ handleActive }) {
                   </div>
                 </Link>
               </li>
+              <li
+              className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/adminmanagement" ? "nav-active" : ""
+                } `}
+            >
+              <Link to="/adminmanagement">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2.5">
+                    <span className="item-ico">
+                      <svg
+                        width="18"
+                        height="20"
+                        viewBox="0 0 18 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M18 16V6C18 3.79086 16.2091 2 14 2H4C1.79086 2 0 3.79086 0 6V16C0 18.2091 1.79086 20 4 20H14C16.2091 20 18 18.2091 18 16Z"
+                          fill="#1A202C"
+                          className="path-1"
+                        />
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M4.25 8C4.25 7.58579 4.58579 7.25 5 7.25H13C13.4142 7.25 13.75 7.58579 13.75 8C13.75 8.41421 13.4142 8.75 13 8.75H5C4.58579 8.75 4.25 8.41421 4.25 8Z"
+                          fill="#22C55E"
+                          className="path-2"
+                        />
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H13C13.4142 11.25 13.75 11.5858 13.75 12C13.75 12.4142 13.4142 12.75 13 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z"
+                          fill="#22C55E"
+                          className="path-2"
+                        />
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M4.25 16C4.25 15.5858 4.58579 15.25 5 15.25H9C9.41421 15.25 9.75 15.5858 9.75 16C9.75 16.4142 9.41421 16.75 9 16.75H5C4.58579 16.75 4.25 16.4142 4.25 16Z"
+                          fill="#22C55E"
+                          className="path-2"
+                        />
+                        <path
+                          d="M11 0H7C5.89543 0 5 0.895431 5 2C5 3.10457 5.89543 4 7 4H11C12.1046 4 13 3.10457 13 2C13 0.895431 12.1046 0 11 0Z"
+                          fill="#22C55E"
+                          className="path-2"
+                        />
+                      </svg>
+                    </span>
+                    <span className="item-text text-lg font-medium leading-none">
+                      Admin Management
+                    </span>
+                  </div>
+                </div>
+              </Link>
+              </li>
+              
               <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/transaction" ? "nav-active" : ""
                   } `}
@@ -297,7 +352,7 @@ function Sidebar({ handleActive }) {
                     >
                       <li>
                         <Link
-                          to="/gamehistory?gamename=balckandwhite"
+                          to="/gamehistory?gamename=Roullette"
                           className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-2" ? "nav-active" : ""
                             }`}
                         >
@@ -306,7 +361,7 @@ function Sidebar({ handleActive }) {
                       </li>
                       <li>
                         <Link
-                          to="/gamelogic?gamename=balckandwhite"
+                          to="/gamelogic?gamename=Roullette"
                           className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-3" ? "nav-active" : ""
                             }`}
                         >
@@ -379,7 +434,7 @@ function Sidebar({ handleActive }) {
                     >
                       <li>
                         <Link
-                          to="/gamehistory?gamename=aviator"
+                          to="/gamehistory?gamename=Ludo"
                           className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/" ? "nav-active" : ""
                             }`}
                         >
@@ -388,7 +443,7 @@ function Sidebar({ handleActive }) {
                       </li>
                       <li>
                         <Link
-                          to="/gamelogic?gamename=aviator"
+                          to="/gamelogic?gamename=Ludo"
                           className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-2" ? "nav-active" : ""
                             }`}
                         >
@@ -463,7 +518,7 @@ function Sidebar({ handleActive }) {
                     >
                       <li>
                         <Link
-                          to="/gamehistory?gamename=aviator"
+                          to="/gamehistory?gamename=JantaVoldy"
                           className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/" ? "nav-active" : ""
                             }`}
                         >
@@ -472,7 +527,7 @@ function Sidebar({ handleActive }) {
                       </li>
                       <li>
                         <Link
-                          to="/gamelogic?gamename=aviator"
+                          to="/gamelogic?gamename=JantaVoldy"
                           className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-2" ? "nav-active" : ""
                             }`}
                         >
@@ -547,7 +602,7 @@ function Sidebar({ handleActive }) {
                     >
                       <li>
                         <Link
-                          to="/gamehistory?gamename=aviator"
+                          to="/gamehistory?gamename=TeenPatti"
                           className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/" ? "nav-active" : ""
                             }`}
                         >
@@ -556,7 +611,7 @@ function Sidebar({ handleActive }) {
                       </li>
                       <li>
                         <Link
-                          to="/gamelogic?gamename=aviator"
+                          to="/gamelogic?gamename=TeenPatti"
                           className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-2" ? "nav-active" : ""
                             }`}
                         >
@@ -568,205 +623,91 @@ function Sidebar({ handleActive }) {
 
                   </li>
                 </ul>
-               
-              </li>
-              <li
-                className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/analytics" ? "nav-active" : ""
-                  } `}
-              >
-                <Link to="/botList">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2.5">
-                      <span className="item-ico">
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 4C0 1.79086 1.79086 0 4 0H16C18.2091 0 20 1.79086 20 4V16C20 18.2091 18.2091 20 16 20H4C1.79086 20 0 18.2091 0 16V4Z"
-                            fill="#1A202C"
-                            className="path-1"
-                          />
-                          <path
-                            d="M14 9C12.8954 9 12 9.89543 12 11L12 13C12 14.1046 12.8954 15 14 15C15.1046 15 16 14.1046 16 13V11C16 9.89543 15.1046 9 14 9Z"
-                            fill="#22C55E"
-                            className="path-2"
-                          />
-                          <path
-                            d="M6 5C4.89543 5 4 5.89543 4 7L4 13C4 14.1046 4.89543 15 6 15C7.10457 15 8 14.1046 8 13L8 7C8 5.89543 7.10457 5 6 5Z"
-                            fill="#22C55E"
-                            className="path-2"
-                          />
-                        </svg>
-                      </span>
-                      <span className="item-text text-lg font-medium leading-none">
-                        Bot
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              </li>
-              <li
-                className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/depositList" ? "nav-active" : ""
-                  } `}
-              >
-                <Link to="/depositList">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2.5">
-                      <span className="item-ico">
-                        <svg
-                          width="20"
-                          height="18"
-                          viewBox="0 0 20 18"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M20 4C20 1.79086 18.2091 0 16 0H4C1.79086 0 0 1.79086 0 4V14C0 16.2091 1.79086 18 4 18H16C18.2091 18 20 16.2091 20 14V4Z"
-                            fill="#1A202C"
-                            className="path-1"
-                          />
-                          <path
-                            d="M6 9C6 7.34315 4.65685 6 3 6H0V12H3C4.65685 12 6 10.6569 6 9Z"
-                            fill="#22C55E"
-                            className="path-2"
-                          />
-                        </svg>
-                      </span>
-                      <span className="item-text text-lg font-medium leading-none">
-                        Deposit
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              </li>
-              <li
-                className={`item py-[11px] text-bgray-900 dark:text-white`}
-                onClick={() => setPayoutlist(!payoutlist)}
-              >
-                <a className="cursor-pointer">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2.5">
-                      <span className="item-ico">
-                        <svg
-                          width="18"
-                          height="21"
-                          viewBox="0 0 18 21"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            className="path-1"
-                            d="M0 8.84719C0 7.99027 0.366443 7.17426 1.00691 6.60496L6.34255 1.86217C7.85809 0.515019 10.1419 0.515019 11.6575 1.86217L16.9931 6.60496C17.6336 7.17426 18 7.99027 18 8.84719V17C18 19.2091 16.2091 21 14 21H4C1.79086 21 0 19.2091 0 17V8.84719Z"
-                            fill="#1A202C"
-                          />
-                          <path
-                            className="path-2"
-                            d="M5 17C5 14.7909 6.79086 13 9 13C11.2091 13 13 14.7909 13 17V21H5V17Z"
-                            fill="#22C55E"
-                          />
-                        </svg>
-                      </span>
-                      <span className="item-text text-lg font-medium leading-none">
-                        PayOut Management
-                      </span>
-                    </div>
-                    <span
-                      className={`transition-all ${payoutlist ? "-rotate-90" : "rotate-0"
-                        }`}
-                    >
-                      <svg
-                        width="6"
-                        height="12"
-                        viewBox="0 0 6 12"
-                        fill="none"
-                        className="fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          fill="currentColor"
-                          d="M0.531506 0.414376C0.20806 0.673133 0.155619 1.1451 0.414376 1.46855L4.03956 6.00003L0.414376 10.5315C0.155618 10.855 0.208059 11.3269 0.531506 11.5857C0.854952 11.8444 1.32692 11.792 1.58568 11.4685L5.58568 6.46855C5.80481 6.19464 5.80481 5.80542 5.58568 5.53151L1.58568 0.531506C1.32692 0.20806 0.854953 0.155619 0.531506 0.414376Z"
-                        />
-                      </svg>
-                    </span>
-                  </div>
-                </a>
                 <ul
-                  className={`sub-menu ml-2.5 mt-[22px]  border-l transition-all overflow-hidden border-success-100 pl-5  ${payoutlist ? "active" : ""
+                  className={`sub-menu ml-2.5 mt-[22px]  border-l transition-all overflow-hidden border-success-100 pl-5  ${navItem == true ? "active" : ""
                     }`}
                 >
-                  <li>
-                    <Link
-                      to="/payoutpendding?status=Pendding"
-                      className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-2" ? "nav-active" : ""
+                  <li
+                    className={`item py-[11px] text-bgray-900 dark:text-white`}
+                    onClick={() => handelSubMenu(5)}
+                  >
+                    <a className="cursor-pointer">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2.5">
+                          <span className="item-ico">
+                            <svg
+                              width="18"
+                              height="21"
+                              viewBox="0 0 18 21"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                className="path-1"
+                                d="M0 8.84719C0 7.99027 0.366443 7.17426 1.00691 6.60496L6.34255 1.86217C7.85809 0.515019 10.1419 0.515019 11.6575 1.86217L16.9931 6.60496C17.6336 7.17426 18 7.99027 18 8.84719V17C18 19.2091 16.2091 21 14 21H4C1.79086 21 0 19.2091 0 17V8.84719Z"
+                                fill="#1A202C"
+                              />
+                              <path
+                                className="path-2"
+                                d="M5 17C5 14.7909 6.79086 13 9 13C11.2091 13 13 14.7909 13 17V21H5V17Z"
+                                fill="#22C55E"
+                              />
+                            </svg>
+                          </span>
+                          <span className="item-text text-lg font-medium leading-none">
+                            Rummy Game
+                          </span>
+                        </div>
+                        <span
+                          className={`transition-all ${navSubItem == 5 ? "-rotate-90" : "rotate-0"
+                            }`}
+                        >
+                          <svg
+                            width="6"
+                            height="12"
+                            viewBox="0 0 6 12"
+                            fill="none"
+                            className="fill-current"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              clipRule="evenodd"
+                              fill="currentColor"
+                              d="M0.531506 0.414376C0.20806 0.673133 0.155619 1.1451 0.414376 1.46855L4.03956 6.00003L0.414376 10.5315C0.155618 10.855 0.208059 11.3269 0.531506 11.5857C0.854952 11.8444 1.32692 11.792 1.58568 11.4685L5.58568 6.46855C5.80481 6.19464 5.80481 5.80542 5.58568 5.53151L1.58568 0.531506C1.32692 0.20806 0.854953 0.155619 0.531506 0.414376Z"
+                            />
+                          </svg>
+                        </span>
+                      </div>
+                    </a>
+                    <ul
+                      className={`sub-menu ml-2.5 mt-[22px]  border-l transition-all overflow-hidden border-success-100 pl-5  ${navSubItem == 5 ? "active" : ""
                         }`}
                     >
-                      Pendding List
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/payoutpendding?status=Rejected"
-                      className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-3" ? "nav-active" : ""
-                        }`}
-                    >
-                      Rejected List
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/payoutpendding?status=Success"
-                      className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-3" ? "nav-active" : ""
-                        }`}
-                    >
-                      Success List
-                    </Link>
+                      <li>
+                        <Link
+                          to="/gamehistory?gamename=Rummy"
+                          className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/" ? "nav-active" : ""
+                            }`}
+                        >
+                          Game History
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/gamelogic?gamename=Rummy"
+                          className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-2" ? "nav-active" : ""
+                            }`}
+                        >
+                          Game Logic
+                        </Link>
+                      </li>
+
+                    </ul>
+
                   </li>
                 </ul>
-              </li>
-              <li
-                className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/socialurl" ? "nav-active" : ""
-                  } `}
-              >
-                <Link to="/socialurl">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2.5">
-                      <span className="item-ico">
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <ellipse
-                            cx="11.7778"
-                            cy="17.5555"
-                            rx="7.77778"
-                            ry="4.44444"
-                            className="path-1"
-                            fill="#1A202C"
-                          />
-                          <circle
-                            className="path-2"
-                            cx="11.7778"
-                            cy="6.44444"
-                            r="4.44444"
-                            fill="#22C55E"
-                          />
-                        </svg>
-                      </span>
-                      <span className="item-text text-lg font-medium leading-none">
-                        Socail URL
-                      </span>
-                    </div>
-                  </div>
-                </Link>
+
               </li>
               <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/noticetext" ? "nav-active" : ""
@@ -819,118 +760,6 @@ function Sidebar({ handleActive }) {
                       </span>
                       <span className="item-text text-lg font-medium leading-none">
                         Notice Text
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              </li>
-              <li
-                className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/mail" ? "nav-active" : ""
-                  } `}
-              >
-                <Link to="/mail">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2.5">
-                      <span className="item-ico">
-                        <svg
-                          width="18"
-                          height="21"
-                          viewBox="0 0 18 21"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 6.5C0 4.29086 1.79086 2.5 4 2.5H14C16.2091 2.5 18 4.29086 18 6.5V8V17C18 19.2091 16.2091 21 14 21H4C1.79086 21 0 19.2091 0 17V8V6.5Z"
-                            fill="#1A202C"
-                            className="path-1"
-                          />
-                          <path
-                            d="M14 2.5H4C1.79086 2.5 0 4.29086 0 6.5V8H18V6.5C18 4.29086 16.2091 2.5 14 2.5Z"
-                            fill="#22C55E"
-                            className="path-2"
-                          />
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M5 0.25C5.41421 0.25 5.75 0.585786 5.75 1V4C5.75 4.41421 5.41421 4.75 5 4.75C4.58579 4.75 4.25 4.41421 4.25 4V1C4.25 0.585786 4.58579 0.25 5 0.25ZM13 0.25C13.4142 0.25 13.75 0.585786 13.75 1V4C13.75 4.41421 13.4142 4.75 13 4.75C12.5858 4.75 12.25 4.41421 12.25 4V1C12.25 0.585786 12.5858 0.25 13 0.25Z"
-                            fill="#1A202C"
-                            className="path-2"
-                          />
-                          <circle cx="9" cy="14" r="1" fill="#22C55E" />
-                          <circle
-                            cx="13"
-                            cy="14"
-                            r="1"
-                            fill="#22C55E"
-                            className="path-2"
-                          />
-                          <circle
-                            cx="5"
-                            cy="14"
-                            r="1"
-                            fill="#22C55E"
-                            className="path-2"
-                          />
-                        </svg>
-                      </span>
-                      <span className="item-text text-lg font-medium leading-none">
-                        Mail
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              </li>
-              <li
-                className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/coinmanagement" ? "nav-active" : ""
-                  } `}
-              >
-                <Link to="/coinmanagement">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2.5">
-                      <span className="item-ico">
-                        <svg
-                          width="18"
-                          height="21"
-                          viewBox="0 0 18 21"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 6.5C0 4.29086 1.79086 2.5 4 2.5H14C16.2091 2.5 18 4.29086 18 6.5V8V17C18 19.2091 16.2091 21 14 21H4C1.79086 21 0 19.2091 0 17V8V6.5Z"
-                            fill="#1A202C"
-                            className="path-1"
-                          />
-                          <path
-                            d="M14 2.5H4C1.79086 2.5 0 4.29086 0 6.5V8H18V6.5C18 4.29086 16.2091 2.5 14 2.5Z"
-                            fill="#22C55E"
-                            className="path-2"
-                          />
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M5 0.25C5.41421 0.25 5.75 0.585786 5.75 1V4C5.75 4.41421 5.41421 4.75 5 4.75C4.58579 4.75 4.25 4.41421 4.25 4V1C4.25 0.585786 4.58579 0.25 5 0.25ZM13 0.25C13.4142 0.25 13.75 0.585786 13.75 1V4C13.75 4.41421 13.4142 4.75 13 4.75C12.5858 4.75 12.25 4.41421 12.25 4V1C12.25 0.585786 12.5858 0.25 13 0.25Z"
-                            fill="#1A202C"
-                            className="path-2"
-                          />
-                          <circle cx="9" cy="14" r="1" fill="#22C55E" />
-                          <circle
-                            cx="13"
-                            cy="14"
-                            r="1"
-                            fill="#22C55E"
-                            className="path-2"
-                          />
-                          <circle
-                            cx="5"
-                            cy="14"
-                            r="1"
-                            fill="#22C55E"
-                            className="path-2"
-                          />
-                        </svg>
-                      </span>
-                      <span className="item-text text-lg font-medium leading-none">
-                        coin Management
                       </span>
                     </div>
                   </div>
@@ -1082,9 +911,7 @@ function Sidebar({ handleActive }) {
               </li>
             </ul>
           </div>
-
         </div>
-
       </div>
     </aside>
   );

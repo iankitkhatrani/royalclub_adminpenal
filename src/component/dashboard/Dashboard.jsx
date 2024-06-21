@@ -16,7 +16,6 @@ function Dashboard() {
   let [totalWithdraw, settotalWithdraw] = useState('');
   let [todayDeposit, settodayDeposit] = useState('');
   let [todayWithdraw, setTodaywithdraw] = useState('');
-  let [todayKYC, setTodaykYC] = useState('');
   let [totalGamePay, setTotalgamePay] = useState('');
 
   useEffect( () => {
@@ -38,8 +37,6 @@ function Dashboard() {
       if(apiData.todayWithdraw != undefined)
       setTodaywithdraw(apiData.todayWithdraw)
 
-      if(apiData.todayKYC != undefined)
-      setTodaykYC(apiData.todayKYC)
 
       if(apiData.totalGamePay != undefined)
       setTotalgamePay(apiData.totalGamePay)
@@ -93,22 +90,8 @@ function Dashboard() {
           groth="+ 3.5%"
           id="totalGoal"
         />
-        <TotalWidgetCard
-          totalEarnImg={totalEarn}
-          memberImg={memberImg}
-          title="Today KYC"
-          amount={todayKYC}
-          groth="+ 3.5%"
-          id="totalGoal"
-        />
-        <TotalWidgetCard
-          totalEarnImg={totalEarn}
-          memberImg={memberImg}
-          title="Games Played"
-          amount={totalGamePay}
-          groth="+ 3.5%"
-          id="totalGoal"
-        />
+       
+       
       </div>
     </div>
   );
