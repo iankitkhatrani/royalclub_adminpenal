@@ -6,7 +6,7 @@ import PasswordResetModal from "../modal/PasswordResetModal";
 import { useState } from "react";
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
-const host =  "http://93.127.194.87:5959"; //"http://192.168.0.203:5959" //
+const host =  "http://royalsclub.in:5959"; //"http://192.168.0.203:5959" //
 
 
 function SigninAdmin() {
