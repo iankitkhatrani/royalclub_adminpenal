@@ -148,7 +148,7 @@ function SigninAdmin() {
       <div className="max-w-[450px] m-auto pt-24 pb-16">
         <header className="text-center mb-8">
           <h2 className="text-bgray-900 dark:text-white text-4xl font-semibold font-poppins mb-2">
-            Sign in to Deal-Regal Admin.
+            Sign in to Royal Club Admin.
           </h2>
           <p className="font-urbanis text-base font-medium text-bgray-600 dark:text-bgray-50">
           </p>
@@ -254,7 +254,7 @@ function SigninAdmin() {
           Sign In
         </a>
         <p className="text-bgray-600 dark:text-white text-center text-sm mt-6">
-          @ 2023 Deal-Regal. All Right Reserved.
+          @ 2023 Royal Club. All Right Reserved.
         </p>
       </div>
     </div>
