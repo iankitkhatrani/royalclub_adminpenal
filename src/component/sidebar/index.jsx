@@ -69,7 +69,7 @@ function Sidebar({ handleActive }) {
         <div className="nav-wrapper mb-[36px] pr-[50px]">
           <div className="item-wrapper mb-5">
             <ul className="mt-2.5">
-              {cookies.get('name') == "Super Admin" ? <li
+              {cookies.get('name') == "SuperAdmin" ? <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/dashboard" ? "nav-active" : ""
                   } `}
               >
@@ -238,7 +238,7 @@ function Sidebar({ handleActive }) {
                 </Link>
               </li> : ""}
 
-              {cookies.get('name') == "Super Admin" ? <li
+              {cookies.get('name') == "SuperAdmin" ? <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/adminmanagement" ? "nav-active" : ""
                   } `}
               >
@@ -295,7 +295,7 @@ function Sidebar({ handleActive }) {
               </li> : ""}
                 
 
-              {cookies.get('name') == "Super Admin"  || cookies.get('name') == "Admin" ? <li
+              {cookies.get('name') == "SuperAdmin"  || cookies.get('name') == "Admin" ? <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/agentmanagement" ? "nav-active" : ""
                   } `}
               >
@@ -883,7 +883,7 @@ function Sidebar({ handleActive }) {
 
               </li> : ""}
 
-              {cookies.get('name') == "Super Admin" ? <li
+              {cookies.get('name') == "SuperAdmin" ? <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/noticetext" ? "nav-active" : ""
                   } `}
               >
@@ -939,7 +939,7 @@ function Sidebar({ handleActive }) {
                   </div>
                 </Link>
               </li> : ""}
-              {cookies.get('name') == "Super Admin" ? <li
+              {cookies.get('name') == "SuperAdmin" ? <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/notificationlist" ? "nav-active" : ""
                   } `}
               >
@@ -987,7 +987,7 @@ function Sidebar({ handleActive }) {
                   </div>
                 </Link>
               </li> : ""}
-              {cookies.get('name') == "Super Admin" ? <li
+              {cookies.get('name') == "SuperAdmin" ? <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/bannerlist" ? "nav-active" : ""
                   } `}
               >
@@ -1035,7 +1035,7 @@ function Sidebar({ handleActive }) {
                   </div>
                 </Link>
               </li> : ""}
-              {cookies.get('name') == "Super Admin" ? <li
+              {cookies.get('name') == "SuperAdmin" ? <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/security" ? "nav-active" : ""
                   } `}
               >

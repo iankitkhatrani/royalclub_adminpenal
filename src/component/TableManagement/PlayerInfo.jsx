@@ -74,7 +74,7 @@ function PlayerInfo({ tableId, activePlayer, turnStartTimer , whichTable }) {
       
    
 
-      {cookies.get('name') == "Super Admin" ? <td className="px-6 py-5 xl:px-0">
+      {cookies.get('name') == "SuperAdmin" ? <td className="px-6 py-5 xl:px-0">
         <div className="flex justify-center">
           
 

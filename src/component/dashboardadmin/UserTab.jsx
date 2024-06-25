@@ -35,7 +35,7 @@ function UserTab({ }) {
   useEffect( () => {
     const submitdata = async () => {
       
-      if(cookies.get('logintype')  == "Super Admin"){
+      if(cookies.get('logintype')  == "SuperAdmin"){
         setJsonData(await latatestUser(cookies.get('logintype')))
       }else{
         setJsonData(await latatestUser(cookies.get('LoginUserId')))
