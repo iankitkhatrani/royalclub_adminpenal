@@ -50,7 +50,7 @@ import Playeredit from './pages/PlayerUpdate'
 import CoinManagement from './pages/CoinManagement'
 
 import AgentDashboard from "./pages/agentdashboard";
-import AdminDashboard from "./pages/shopdashboard";
+import AdminDashboard from "./pages/admindashboard";
 
 import AgentManagement from "./pages/agentManagement";
 import Agentdit from './pages/AgentUpdate'

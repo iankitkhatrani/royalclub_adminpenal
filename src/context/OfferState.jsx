@@ -25,7 +25,6 @@ const OfferState = (props) => {
         cookies.set('token', "");
         return false
     }
-
     const dashboardData = async (id) => {
         try {
             console.log("DAshboard ::::::::::::::::::::::", id)
@@ -52,6 +51,37 @@ const OfferState = (props) => {
             console.log("e :", e)
         }
     }
+
+    const dashboardDataAdmin = async (id) => {
+        try {
+            console.log("dashboardDataAdmin ::::::::::::::::::::::", id)
+            const response = await fetch(`${host}/admin/admin/dashboardDataAdmin?Id=` + id, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                }
+            }).then(data => data.json())
+
+            const json = response
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                console.log("111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 45")
+
+                LogoutClick()
+                return {}
+            } else {
+                return await json
+            }
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+    
+
+    
 
     const latatestUser = async (uid) => {
         try {
@@ -264,7 +294,7 @@ const OfferState = (props) => {
                     'token': cookies.get('token')
                 },
                 body: JSON.stringify(data)
-            }).then(d => d)
+            }).then(d => d.json())
 
             const json = response
             console.log("data api from :latatestUser :::...", json)
@@ -342,10 +372,10 @@ const OfferState = (props) => {
     //==========================================================================
     //=============================== Agent ====================================
 
-    const AgentList = async () => {
+    const AgentList = async (uid) => {
         try {
             console.log("AgentList :::::::", `${host}/admin/agent/AgentList`)
-            const response = await fetch(`${host}/admin/agent/AgentList`, {
+            const response = await fetch(`${host}/admin/agent/AgentList?agentId=` + uid, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -495,11 +525,11 @@ const OfferState = (props) => {
         }
     }
 
-
+    
     const agentAddMoney = async (data) => {
         try {
-            console.log("PlayerList :::::::", `${host}/admin/agent/agentAddMoney`, data)
-            const response = await fetch(`${host}/admin/agent/agentAddMoney`, {
+            console.log("PlayerList :::::::", `${host}/admin/agent/AgentAddMoney`, data)
+            const response = await fetch(`${host}/admin/agent/AgentAddMoney`, {
                 method: 'PUT',
                 headers: {
                     'Accept': 'application/json',
@@ -1017,6 +1047,35 @@ const OfferState = (props) => {
     }
 
     //=================================================================================
+
+    
+
+    const GetCompleteTransactionData = async (userId) => {
+        try {
+            console.log("PlayerList :::::::", `${host}/admin/userhistory/TransactionData`, userId)
+            const response = await fetch(`${host}/admin/userhistory/TransactionData?userId=` + userId, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                }
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :GetCompleteTransactionData :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return []
+            } else {
+                return await json.TransactionData
+            }
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
 
     const GetCompleteWithdrawalData = async (userId) => {
         try {
@@ -2828,8 +2887,8 @@ const OfferState = (props) => {
     return (
         <offerContext.Provider value={{
             host,
-            adminname, adminEmail, dashboardData, latatestUser, latatestAgent, latatestAdmin, PlayerList, PlayerData,
-            PlayerAdd, PlayerDelete, GameLogicSet, GetGameBetInfo, GetGameLogic, GetCompleteWithdrawalData,
+            adminname, adminEmail, dashboardData,dashboardDataAdmin, latatestUser, latatestAgent, latatestAdmin, PlayerList, PlayerData,
+            PlayerAdd, PlayerDelete, GameLogicSet, GetGameBetInfo, GetGameLogic, GetCompleteWithdrawalData,GetCompleteTransactionData,
             GetCompleteDespositeData, GetRegisterReferralBonusData, GetMyReferralData,
             SocailURLsList, SocailURLsAdd, DeleteSocailURLs,
             CoinsList, CoinPackeAdd, DeleteCoinpack,

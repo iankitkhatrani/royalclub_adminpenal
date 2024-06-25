@@ -8,6 +8,9 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 function userInfo() {
 
 
@@ -30,18 +33,12 @@ function userInfo() {
   let [userInfo, SetuserInfo] = useState({
     userId: Botinfo.UserId,
     UserName: Botinfo.UserName,
-    profileUrl: Botinfo.profileUrl,
     status: Botinfo.status,
-    MobileNo: Botinfo.MobileNo,
-    aviatorGamePlay: Botinfo.aviatorGamePlay,
-    blackandwhiteGamePlay: Botinfo.blackandwhiteGamePlay,
+    password: Botinfo.password,
     MainWallet: Botinfo.MainWallet,
-    WinWallet: Botinfo.WinWallet,
-    BonusWallet: Botinfo.BonusWallet,
     RegistrationDate: Botinfo.RegistrationDate,
     LastLogin: Botinfo.LastLogin,
     Status: Botinfo.status,
-    email: Botinfo.email,
     uniqueId: Botinfo.uniqueId,
 
   })
@@ -52,18 +49,12 @@ function userInfo() {
       SetuserInfo({
         userId: Botinfo.UserId,
         UserName: Botinfo.UserName,
-        profileUrl: Botinfo.img,
         status: Botinfo.status,
-        MobileNo: Botinfo.MobileNo,
-        aviatorGamePlay: Botinfo.aviatorGamePlay,
-        blackandwhiteGamePlay: Botinfo.blackandwhiteGamePlay,
+        password: Botinfo.password,
         MainWallet: Botinfo.MainWallet,
-        WinWallet: Botinfo.WinWallet,
-        BonusWallet: Botinfo.BonusWallet,
         RegistrationDate: Botinfo.RegistrationDate,
         LastLogin: Botinfo.LastLogin,
         Status: Botinfo.status,
-        email: Botinfo.email,
         uniqueId: Botinfo.uniqueId,
       })
 
@@ -87,11 +78,24 @@ function userInfo() {
   const SaveChange = async () => {
     console.log("amount ", amount)
 
-    let res = await AddMoney({ money: amount, type: "Deposit", userId: Botinfo.UserId })
+    let res = await AddMoney({
+      money: amount,
+      type: "Deposit",
+      userId: Botinfo.UserId,
+      authorisedid: cookies.get('LoginUserId'),
+      authorisedtype:cookies.get('logintype'),
+      authorisedname: cookies.get('email')
+     })
 
-    if (res.status == "ok") {
+    // if (res.status == "ok") {
 
-      alert("Successfully Added...!!")
+    //   alert("Successfully Added...!!")
+    // } else {
+    //   alert("Error Please enter")
+    // }
+    if (res.msg != undefined) {
+
+      alert(res.msg)
     } else {
       alert("Error Please enter")
     }
@@ -105,11 +109,25 @@ function userInfo() {
   const SaveChangeDeduct = async () => {
     console.log("amount ", amount)
 
-    let res = await DeductMoney({ money: amount, type: "Deduct", userId: Botinfo.UserId })
+    let res = await DeductMoney({
+      money: amount,
+      type: "Deduct",
+      userId: Botinfo.UserId,
+      authorisedid: cookies.get('LoginUserId'),
+      authorisedtype:cookies.get('logintype'),
+      authorisedname: cookies.get('email')
+    })
 
-    if (res.status == "ok") {
+    // if (res.status == "ok") {
 
-      alert("Successfully Deduct...!!")
+    //   alert("Successfully Deduct...!!")
+    // } else {
+    //   alert("Error Please enter")
+    // }
+
+    if (res.msg != undefined) {
+
+      alert(res.msg)
     } else {
       alert("Error Please enter")
     }
@@ -128,16 +146,6 @@ function userInfo() {
               Player Information
             </h3>
           </div>
-
-          <div className="flex justify-center">
-            <div className="card-slider relative w-[100px] md:w-[100px]">
-
-              <div className="w-full">
-                <img src={host + "/upload/avatar/1.jpg"} alt="card" />
-              </div>
-
-            </div>
-          </div>
         </div>
         <div className="w-full">
 
@@ -148,43 +156,25 @@ function userInfo() {
           </div>
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Eamil :- {userInfo.email}
-            </p>
-          </div>
-
-          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
-            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
               Player Id :- {userInfo.uniqueId}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Mobile Number :- {userInfo.MobileNo}
+              Password :- {userInfo.password}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Status :- {userInfo.Status}
+              Status :- {userInfo.status == true ? "Active" : "Deactive"}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
               Main Wallet :- {userInfo.MainWallet}
-            </p>
-          </div>
-
-          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
-            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Win Wallet :- {userInfo.WinWallet}
-            </p>
-          </div>
-
-          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
-            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Bonus Wallet :- {userInfo.WinWaBonusWalletlet}
             </p>
           </div>
 

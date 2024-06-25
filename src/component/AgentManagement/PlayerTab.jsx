@@ -2,7 +2,9 @@ import React, { useState, useContext, useEffect } from 'react';
 import ProtoTypes from "prop-types";
 import CustomerInfo from "./PlayerInfo";
 import offerContext from '../../context/offerContext';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate,useLocation} from 'react-router-dom';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 function PlayerTab({ }) {
   //-------------------------------------------------------------------------------------------------------
@@ -23,13 +25,27 @@ function PlayerTab({ }) {
     navigate('/agentadd');
   };
 
+  const location = useLocation();
+  //console.log("location ", location.state)
+  const AgentInfo = location.state;
+
+  console.log("AgentInfo ",AgentInfo , cookies.get('logintype'))
+
   let [userData, setUserData] = useState([]);
   const context = useContext(offerContext)
   const { AgentList } = context
 
   useEffect(() => {
     const submitdata = async () => {
-      setUserData(await AgentList())
+      //setUserData(await AgentList())
+
+      if(AgentInfo != undefined && AgentInfo.UserId != undefined){
+        setUserData(await AgentList(AgentInfo.UserId))
+      }else if(cookies.get('logintype')  == "SuperAdmin"){
+        setUserData(await AgentList(cookies.get('logintype')))
+      }else{
+        setUserData(await AgentList(cookies.get('LoginUserId')))
+      }
 
       console.log("userData ::::::::::::::",userData)
     }
@@ -48,8 +64,7 @@ function PlayerTab({ }) {
       (!from || registrationDate >= from) &&
       (!to || registrationDate <= to) &&
       (searchTerm === '' ||
-      user.name != undefined && user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.mobileno != undefined && user.mobileno.includes(searchTerm))
+      user.name != undefined && user.name.toLowerCase().includes(searchTerm.toLowerCase()))
     );
   });
 
@@ -167,7 +182,15 @@ function PlayerTab({ }) {
               <td className="px-6 py-5 xl:px-0">
                 <div className="flex items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Location
+                  Commission
+                  </span>
+                </div>
+              </td>
+
+              <td className="px-6 py-5 xl:px-0">
+                <div className="flex items-center space-x-2.5">
+                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
+                  Partner percentage
                   </span>
                 </div>
               </td>
@@ -196,6 +219,21 @@ function PlayerTab({ }) {
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
+                  Type
+                  </span>
+                </div>
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+                <div className="flex w-full items-center space-x-2.5">
+                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
+                  Name
+                  </span>
+                </div>
+              </td>
+
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+                <div className="flex w-full items-center space-x-2.5">
+                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                   Action
                   </span>
                 </div>
@@ -209,12 +247,15 @@ function PlayerTab({ }) {
                     UserId={user._id}
                     UserName={user.name}
                     chips={user.chips}
-                    location={user.location}
                     createdAt={user.createdAt}
                     lastLoginDate={user.lastLoginDate}
                     status={user.status}
                     uniqueId={user.uniqueId}
                     password={user.password}
+                    commission={user.commission}
+                    partnerpercentage={user.partnerpercentage}
+                    authorisedtype={user.authorisedtype}
+                    authorisedname={user.authorisedname}
                   />
                 )
                 : index < 3 && (
@@ -223,12 +264,17 @@ function PlayerTab({ }) {
                     UserId={user._id}
                     UserName={user.name}
                     chips={user.chips}
-                    location={user.location}
                     createdAt={user.createdAt}
                     lastLoginDate={user.lastLoginDate}
                     status={user.status}
                     uniqueId={user.uniqueId}
                     password={user.password}
+                    commission={user.commission}
+                    partnerpercentage={user.partnerpercentage}
+                    authorisedtype={user.authorisedtype}
+                    authorisedname={user.authorisedname}
+
+
                   />
                 )
             )}

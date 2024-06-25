@@ -5,7 +5,8 @@ import logoW from "../../assets/images/logo/logo-white.png";
 import profileImg from "../../assets/images/avatar/profile-xs.png";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 function Sidebar({ handleActive }) {
 
   const [payoutlist, setPayoutlist] = useState(false);
@@ -30,10 +31,10 @@ function Sidebar({ handleActive }) {
   return (
     <aside className="sidebar-wrapper fixed top-0 z-30 block h-full w-[308px] bg-white dark:bg-darkblack-600 sm:hidden xl:block">
       <div className="sidebar-header relative z-30 flex h-[108px] w-full items-center border-b border-r border-b-[#F7F7F7] border-r-[#F7F7F7] pl-[50px] dark:border-darkblack-400">
-        <Link to="/">
+     
           <img src={logo} className="block dark:hidden" alt="logo" />
           <img src={logoW} className="hidden dark:block" alt="logo" />
-        </Link>
+        
         <button
           aria-label="none"
           type="button"
@@ -68,8 +69,8 @@ function Sidebar({ handleActive }) {
         <div className="nav-wrapper mb-[36px] pr-[50px]">
           <div className="item-wrapper mb-5">
             <ul className="mt-2.5">
-              <li
-                className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/dashboardr" ? "nav-active" : ""
+              {cookies.get('name') == "Super Admin" ? <li
+                className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/dashboard" ? "nav-active" : ""
                   } `}
               >
                 <Link to="/dashboard">
@@ -122,63 +123,234 @@ function Sidebar({ handleActive }) {
                     </div>
                   </div>
                 </Link>
-              </li>
-              <li
-              className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/adminmanagement" ? "nav-active" : ""
-                } `}
-            >
-              <Link to="/adminmanagement">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2.5">
-                    <span className="item-ico">
-                      <svg
-                        width="18"
-                        height="20"
-                        viewBox="0 0 18 20"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M18 16V6C18 3.79086 16.2091 2 14 2H4C1.79086 2 0 3.79086 0 6V16C0 18.2091 1.79086 20 4 20H14C16.2091 20 18 18.2091 18 16Z"
-                          fill="#1A202C"
-                          className="path-1"
-                        />
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M4.25 8C4.25 7.58579 4.58579 7.25 5 7.25H13C13.4142 7.25 13.75 7.58579 13.75 8C13.75 8.41421 13.4142 8.75 13 8.75H5C4.58579 8.75 4.25 8.41421 4.25 8Z"
-                          fill="#22C55E"
-                          className="path-2"
-                        />
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H13C13.4142 11.25 13.75 11.5858 13.75 12C13.75 12.4142 13.4142 12.75 13 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z"
-                          fill="#22C55E"
-                          className="path-2"
-                        />
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M4.25 16C4.25 15.5858 4.58579 15.25 5 15.25H9C9.41421 15.25 9.75 15.5858 9.75 16C9.75 16.4142 9.41421 16.75 9 16.75H5C4.58579 16.75 4.25 16.4142 4.25 16Z"
-                          fill="#22C55E"
-                          className="path-2"
-                        />
-                        <path
-                          d="M11 0H7C5.89543 0 5 0.895431 5 2C5 3.10457 5.89543 4 7 4H11C12.1046 4 13 3.10457 13 2C13 0.895431 12.1046 0 11 0Z"
-                          fill="#22C55E"
-                          className="path-2"
-                        />
-                      </svg>
-                    </span>
-                    <span className="item-text text-lg font-medium leading-none">
-                      Admin Management
-                    </span>
+              </li> : ""}
+
+              {cookies.get('name') == "Admin" ? <li
+                className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/admindashboard" ? "nav-active" : ""
+                  } `}
+              >
+                <Link to="/admindashboard">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2.5">
+                      <span className="item-ico">
+                        <svg
+                          width="18"
+                          height="20"
+                          viewBox="0 0 18 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 16V6C18 3.79086 16.2091 2 14 2H4C1.79086 2 0 3.79086 0 6V16C0 18.2091 1.79086 20 4 20H14C16.2091 20 18 18.2091 18 16Z"
+                            fill="#1A202C"
+                            className="path-1"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M4.25 8C4.25 7.58579 4.58579 7.25 5 7.25H13C13.4142 7.25 13.75 7.58579 13.75 8C13.75 8.41421 13.4142 8.75 13 8.75H5C4.58579 8.75 4.25 8.41421 4.25 8Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H13C13.4142 11.25 13.75 11.5858 13.75 12C13.75 12.4142 13.4142 12.75 13 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M4.25 16C4.25 15.5858 4.58579 15.25 5 15.25H9C9.41421 15.25 9.75 15.5858 9.75 16C9.75 16.4142 9.41421 16.75 9 16.75H5C4.58579 16.75 4.25 16.4142 4.25 16Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                          <path
+                            d="M11 0H7C5.89543 0 5 0.895431 5 2C5 3.10457 5.89543 4 7 4H11C12.1046 4 13 3.10457 13 2C13 0.895431 12.1046 0 11 0Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                        </svg>
+                      </span>
+                      <span className="item-text text-lg font-medium leading-none">
+                        Dashboard
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </Link>
-              </li>
-              
+                </Link>
+              </li> : ""}
+
+
+              {cookies.get('name') == "Agent" ? <li
+                className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/agentdashboard" ? "nav-active" : ""
+                  } `}
+              >
+                <Link to="/agentdashboard">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2.5">
+                      <span className="item-ico">
+                        <svg
+                          width="18"
+                          height="20"
+                          viewBox="0 0 18 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 16V6C18 3.79086 16.2091 2 14 2H4C1.79086 2 0 3.79086 0 6V16C0 18.2091 1.79086 20 4 20H14C16.2091 20 18 18.2091 18 16Z"
+                            fill="#1A202C"
+                            className="path-1"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M4.25 8C4.25 7.58579 4.58579 7.25 5 7.25H13C13.4142 7.25 13.75 7.58579 13.75 8C13.75 8.41421 13.4142 8.75 13 8.75H5C4.58579 8.75 4.25 8.41421 4.25 8Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H13C13.4142 11.25 13.75 11.5858 13.75 12C13.75 12.4142 13.4142 12.75 13 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M4.25 16C4.25 15.5858 4.58579 15.25 5 15.25H9C9.41421 15.25 9.75 15.5858 9.75 16C9.75 16.4142 9.41421 16.75 9 16.75H5C4.58579 16.75 4.25 16.4142 4.25 16Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                          <path
+                            d="M11 0H7C5.89543 0 5 0.895431 5 2C5 3.10457 5.89543 4 7 4H11C12.1046 4 13 3.10457 13 2C13 0.895431 12.1046 0 11 0Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                        </svg>
+                      </span>
+                      <span className="item-text text-lg font-medium leading-none">
+                        Dashboard
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              </li> : ""}
+
+              {cookies.get('name') == "Super Admin" ? <li
+                className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/adminmanagement" ? "nav-active" : ""
+                  } `}
+              >
+                <Link to="/adminmanagement">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2.5">
+                      <span className="item-ico">
+                        <svg
+                          width="18"
+                          height="20"
+                          viewBox="0 0 18 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 16V6C18 3.79086 16.2091 2 14 2H4C1.79086 2 0 3.79086 0 6V16C0 18.2091 1.79086 20 4 20H14C16.2091 20 18 18.2091 18 16Z"
+                            fill="#1A202C"
+                            className="path-1"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M4.25 8C4.25 7.58579 4.58579 7.25 5 7.25H13C13.4142 7.25 13.75 7.58579 13.75 8C13.75 8.41421 13.4142 8.75 13 8.75H5C4.58579 8.75 4.25 8.41421 4.25 8Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H13C13.4142 11.25 13.75 11.5858 13.75 12C13.75 12.4142 13.4142 12.75 13 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M4.25 16C4.25 15.5858 4.58579 15.25 5 15.25H9C9.41421 15.25 9.75 15.5858 9.75 16C9.75 16.4142 9.41421 16.75 9 16.75H5C4.58579 16.75 4.25 16.4142 4.25 16Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                          <path
+                            d="M11 0H7C5.89543 0 5 0.895431 5 2C5 3.10457 5.89543 4 7 4H11C12.1046 4 13 3.10457 13 2C13 0.895431 12.1046 0 11 0Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                        </svg>
+                      </span>
+                      <span className="item-text text-lg font-medium leading-none">
+                        Admin Management
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              </li> : ""}
+                
+
+              {cookies.get('name') == "Super Admin"  || cookies.get('name') == "Admin" ? <li
+                className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/agentmanagement" ? "nav-active" : ""
+                  } `}
+              >
+                <Link to="/agentmanagement">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2.5">
+                      <span className="item-ico">
+                        <svg
+                          width="18"
+                          height="20"
+                          viewBox="0 0 18 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 16V6C18 3.79086 16.2091 2 14 2H4C1.79086 2 0 3.79086 0 6V16C0 18.2091 1.79086 20 4 20H14C16.2091 20 18 18.2091 18 16Z"
+                            fill="#1A202C"
+                            className="path-1"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M4.25 8C4.25 7.58579 4.58579 7.25 5 7.25H13C13.4142 7.25 13.75 7.58579 13.75 8C13.75 8.41421 13.4142 8.75 13 8.75H5C4.58579 8.75 4.25 8.41421 4.25 8Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H13C13.4142 11.25 13.75 11.5858 13.75 12C13.75 12.4142 13.4142 12.75 13 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M4.25 16C4.25 15.5858 4.58579 15.25 5 15.25H9C9.41421 15.25 9.75 15.5858 9.75 16C9.75 16.4142 9.41421 16.75 9 16.75H5C4.58579 16.75 4.25 16.4142 4.25 16Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                          <path
+                            d="M11 0H7C5.89543 0 5 0.895431 5 2C5 3.10457 5.89543 4 7 4H11C12.1046 4 13 3.10457 13 2C13 0.895431 12.1046 0 11 0Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                        </svg>
+                      </span>
+                      <span className="item-text text-lg font-medium leading-none">
+                        Agent Management
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              </li> : ""}
+
               <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/transaction" ? "nav-active" : ""
                   } `}
@@ -234,7 +406,8 @@ function Sidebar({ handleActive }) {
                   </div>
                 </Link>
               </li>
-              <li
+
+              {cookies.get('name') == "SuperAdmin" ? <li
                 className={`item py-[11px] text-bgray-900 dark:text-white`}
                 onClick={() => handelMenu(true)}
               >
@@ -708,8 +881,9 @@ function Sidebar({ handleActive }) {
                   </li>
                 </ul>
 
-              </li>
-              <li
+              </li> : ""}
+
+              {cookies.get('name') == "Super Admin" ? <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/noticetext" ? "nav-active" : ""
                   } `}
               >
@@ -764,8 +938,8 @@ function Sidebar({ handleActive }) {
                     </div>
                   </div>
                 </Link>
-              </li>
-              <li
+              </li> : ""}
+              {cookies.get('name') == "Super Admin" ? <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/notificationlist" ? "nav-active" : ""
                   } `}
               >
@@ -812,8 +986,8 @@ function Sidebar({ handleActive }) {
                     </div>
                   </div>
                 </Link>
-              </li>
-              <li
+              </li> : ""}
+              {cookies.get('name') == "Super Admin" ? <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/bannerlist" ? "nav-active" : ""
                   } `}
               >
@@ -860,8 +1034,8 @@ function Sidebar({ handleActive }) {
                     </div>
                   </div>
                 </Link>
-              </li>
-              <li
+              </li> : ""}
+              {cookies.get('name') == "Super Admin" ? <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/security" ? "nav-active" : ""
                   } `}
               >
@@ -908,7 +1082,7 @@ function Sidebar({ handleActive }) {
                     </div>
                   </div>
                 </Link>
-              </li>
+              </li> : ""}
             </ul>
           </div>
         </div>

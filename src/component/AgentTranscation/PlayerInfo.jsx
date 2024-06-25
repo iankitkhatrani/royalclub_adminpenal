@@ -5,7 +5,8 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 
-function PlayerInfo({ UserId,name,DateandTime,trnxAmount,oppChips,chips,trnxTypeTxt ,agentname ,adminid,username,userid}) {
+function PlayerInfo({ UserId, name, DateandTime, trnxAmount, chips, trnxTypeTxt ,
+  authorisedid ,authorisedtype,authorisedname,id,type,trackname,userid}) {
 
   const context = useContext(offerContext)
   const { host } = context
@@ -36,7 +37,7 @@ function PlayerInfo({ UserId,name,DateandTime,trnxAmount,oppChips,chips,trnxType
           {name}
         </p>
       </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
+      <td className="w-[195px] px-6 py-5 xl:px-0">
           <p className="text-base font-semibold text-bgray-900 dark:text-white">
             {formatDateTo12hr(DateandTime)}
           </p>
@@ -46,11 +47,7 @@ function PlayerInfo({ UserId,name,DateandTime,trnxAmount,oppChips,chips,trnxType
         ₹{trnxAmount}
         </p>
       </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-        ₹{oppChips}
-        </p>
-      </td>
+      
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
         ₹{chips}
@@ -64,13 +61,13 @@ function PlayerInfo({ UserId,name,DateandTime,trnxAmount,oppChips,chips,trnxType
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {agentname}
+          {authorisedname}
         </p>
       </td>
       
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {username}
+          {trackname}
         </p>
       </td>
       

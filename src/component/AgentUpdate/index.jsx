@@ -26,13 +26,12 @@ function agentUpdate() {
 
   let [userInfo, SetuserInfo] = useState({
     userId: Botinfo.UserId,
-    email: "",
     name: "",
-    mobileno: "",
     password: "",
-    location: "",
-    area: "",
-    status: ""
+    status:"",
+    commission: "",
+    partnerpercentage: ""
+
   })
 
   useEffect(() => {
@@ -42,9 +41,9 @@ function agentUpdate() {
         userId: Botinfo.UserId,
         name: Botinfo.UserName,
         password: Botinfo.password,
-        location: Botinfo.location,
-        status: Botinfo.status
-
+        status:Botinfo.status,
+        commission: Botinfo.commission,
+        partnerpercentage: Botinfo.partnerpercentage
       })
 
     }
@@ -53,9 +52,12 @@ function agentUpdate() {
 
   const OnChange = (event) => {
     let { name, value } = event.target;
+
+    console.log("OnChange :::::::::::",name, value)
+
     SetuserInfo({
       ...userInfo,
-      [name]: value,
+      [name]: value == "inactive"?false:true,
     });
 
 
@@ -88,8 +90,8 @@ function agentUpdate() {
       return false
     }
 
-    if(userInfo.password.length < 8){
-      alert("Invalid password Value leangth Must be 8 characters.")
+    if(userInfo.password.length < 4){
+      alert("Invalid password Value leangth Must be 4 characters.")
       return false
     }
     
@@ -117,7 +119,14 @@ function agentUpdate() {
   const SaveChange = async () => {
     console.log("amount ", amount)
 
-    let res = await agentAddMoney({ money: amount, type: "Deposit", userId: Botinfo.UserId, adminname: cookies.get('name'), adminid: cookies.get('LoginUserId') })
+    let res = await agentAddMoney({
+      money: amount,
+      type: "Deposit",
+      userId: Botinfo.UserId,
+      authorisedid: cookies.get('LoginUserId'),
+      authorisedtype:cookies.get('logintype'),
+      authorisedname: cookies.get('email')
+    })
 
     if (res.msg != undefined) {
 
@@ -136,7 +145,12 @@ function agentUpdate() {
   const SaveChangeDeduct = async () => {
 
 
-    let res = await agentDeductMoney({ money: amount, type: "Deduct", userId: Botinfo.UserId, adminname: cookies.get('name'), adminid: cookies.get('LoginUserId') })
+    let res = await agentDeductMoney({
+      money: amount, type: "Deduct", userId: Botinfo.UserId,
+      authorisedid: cookies.get('LoginUserId'),
+      authorisedtype:cookies.get('logintype'),
+      authorisedname: cookies.get('email')
+    })
 
     if (res.msg != undefined) {
 
@@ -196,18 +210,37 @@ function agentUpdate() {
               </div>
 
 
+              
               <div className="flex flex-col gap-2">
                 <label
                   htmlFor="robotname"
                   className="text-base text-bgray-600 dark:text-bgray-50  font-medium"
                 >
-                  Location
+                Commission
                 </label>
                 <input
                   type="text"
-                  id="location"
-                  placeholder={userInfo.location}
-                  name="location"
+                  id="commission"
+                  placeholder={userInfo.commission}
+                  name="commission"
+                  className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
+                  onChange={handleChange}
+                />
+
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label
+                  htmlFor="robotname"
+                  className="text-base text-bgray-600 dark:text-bgray-50  font-medium"
+                >
+                Partner Percentage
+                </label>
+                <input
+                  type="text"
+                  id="partnerpercentage"
+                  placeholder={userInfo.partnerpercentage}
+                  name="partnerpercentage"
                   className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
                   onChange={handleChange}
                 />
@@ -229,7 +262,7 @@ function agentUpdate() {
                     type="radio"
                     value="active"
                     name="status"
-                    checked={userInfo.status === "active"}
+                    checked={userInfo.status === true}
                     onChange={OnChange}
                   />
                   Active
@@ -240,13 +273,12 @@ function agentUpdate() {
                     type="radio"
                     value="inactive"
                     name="status"
-                    checked={userInfo.status === "inactive" || userInfo.status === ""}
+                    checked={userInfo.status === false || userInfo.status === ""}
                     onChange={OnChange}
                   />
                   Inactive
                 </label>
               </div>
-
 
             </div>
 

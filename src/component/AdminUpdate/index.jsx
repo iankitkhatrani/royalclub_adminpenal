@@ -120,7 +120,7 @@ function adminUpdate() {
       money: amount, type: "Deposit", userId: Botinfo.UserId,
       authorisedid: cookies.get('LoginUserId'),
       authorisedtype:cookies.get('logintype'),
-      authorisedname: cookies.get('name')
+      authorisedname: cookies.get('email')
     })
 
     if (res.msg != undefined) {
@@ -142,7 +142,7 @@ function adminUpdate() {
       money: amount, type: "Deduct", userId: Botinfo.UserId,
       authorisedid: cookies.get('LoginUserId'),
       authorisedtype:cookies.get('logintype'),
-      authorisedname: cookies.get('name')
+      authorisedname: cookies.get('email')
      })
 
     if (res.msg != undefined) {

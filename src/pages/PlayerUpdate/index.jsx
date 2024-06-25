@@ -5,6 +5,12 @@ import TransactionData from "../../component/PlayerUpdate/Transaction/playertran
 import DepositData from "../../component/PlayerUpdate/Deposit/playerdeposit";
 
 
+// <HistoryTable gameName="AviatorGame"/>
+// <HistoryTable gameName="BlackandWhite"/>
+// <TransactionData gameName="Withdrawal"/>
+// <DepositData gameName="Deposite"/>
+
+
 function playerUpdateinfo() {
   return (
 
@@ -13,12 +19,8 @@ function playerUpdateinfo() {
       {/* write your code here */}
       <div className="2xl:flex 2xl:space-x-[48px]">
       <section className="mb-6 2xl:mb-0 2xl:flex-1">
-          <HistoryTable gameName="AviatorGame"/>
-          <HistoryTable gameName="BlackandWhite"/>
-          <TransactionData gameName="Withdrawal"/>
-          <DepositData gameName="Deposite"/>
-          <DepositData gameName="Referral Bonus"/>
-
+          
+      <TransactionData gameName="Transaction"/>
           
 
 

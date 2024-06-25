@@ -2,7 +2,9 @@ import React, { useState, useContext, useEffect } from 'react';
 import ProtoTypes from "prop-types";
 import CustomerInfo from "./PlayerInfo";
 import offerContext from '../../context/offerContext';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate,useLocation} from 'react-router-dom';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 function PlayerTab({ }) {
   //-------------------------------------------------------------------------------------------------------
@@ -23,13 +25,31 @@ function PlayerTab({ }) {
     navigate('/playeradd');
   };
 
+  const location = useLocation();
+  //console.log("location ", location.state)
+  const AgentInfo = location.state;
+
+  console.log("AgentInfo ",AgentInfo , cookies.get('LoginUserId'))
+
   let [userData, setUserData] = useState([]);
   const context = useContext(offerContext)
   const { PlayerList } = context
 
+
+
   useEffect(() => {
     const submitdata = async () => {
-      setUserData(await PlayerList())
+      //setUserData(await PlayerList())
+
+      if(AgentInfo != undefined && AgentInfo.UserId != undefined){
+        setUserData(await PlayerList(AgentInfo.UserId))
+      }else if(cookies.get('logintype')  == "SuperAdmin"){
+        setUserData(await PlayerList(cookies.get('logintype')))
+      }else{
+        setUserData(await PlayerList(cookies.get('LoginUserId')))
+      }
+
+
     }
     submitdata()
   }, []);
@@ -46,8 +66,7 @@ function PlayerTab({ }) {
       (!from || registrationDate >= from) &&
       (!to || registrationDate <= to) &&
       (searchTerm === '' ||
-        user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.mobileNumber.includes(searchTerm))
+        user.username.toLowerCase().includes(searchTerm.toLowerCase()))
     );
   });
 
@@ -131,10 +150,10 @@ function PlayerTab({ }) {
             style={{ marginLeft: "1rem" }}
           />
           <button aria-label="none"
-          className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
+            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
 
           <button aria-label="none"
-          className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={() => navigateToUserRegister()} >Add User</button>
+            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={() => navigateToUserRegister()} >Add User</button>
 
         </div>
       </div>
@@ -142,12 +161,12 @@ function PlayerTab({ }) {
         <table className="w-full">
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
-              
-             
+
+
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Player Name
+                    Player Name
                   </span>
                   <span>
                     <svg
@@ -192,7 +211,7 @@ function PlayerTab({ }) {
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Mobile Number
+                    Password
                   </span>
                   <span>
                     <svg
@@ -233,191 +252,11 @@ function PlayerTab({ }) {
                     </svg>
                   </span>
                 </div>
-              </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0">
-                <div className="flex items-center space-x-2.5">
-                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Aviator GamePlay
-                  </span>
-                  <span>
-                    <svg
-                      width="14"
-                      height="15"
-                      viewBox="0 0 14 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M10.332 1.31567V13.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3.66602 13.3157V1.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0">
-              <div className="flex items-center space-x-2.5">
-                <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Black and White GamePlay
-                </span>
-                <span>
-                  <svg
-                    width="14"
-                    height="15"
-                    viewBox="0 0 14 15"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M10.332 1.31567V13.3157"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M3.66602 13.3157V1.31567"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-              </div>
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                     Main Wallet
-                  </span>
-                  <span>
-                    <svg
-                      width="14"
-                      height="15"
-                      viewBox="0 0 14 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M10.332 1.31567V13.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3.66602 13.3157V1.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0">
-                <div className="flex w-full items-center space-x-2.5">
-                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Win Wallet
-                  </span>
-                  <span>
-                    <svg
-                      width="14"
-                      height="15"
-                      viewBox="0 0 14 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M10.332 1.31567V13.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3.66602 13.3157V1.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0">
-                <div className="flex w-full items-center space-x-2.5">
-                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Bonus Wallet
                   </span>
                   <span>
                     <svg
@@ -554,50 +393,27 @@ function PlayerTab({ }) {
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                     Status
                   </span>
-                  <span>
-                    <svg
-                      width="14"
-                      height="15"
-                      viewBox="0 0 14 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M10.332 1.31567V13.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3.66602 13.3157V1.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                </div>
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+                <div className="flex w-full items-center space-x-2.5">
+                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
+                    Name
                   </span>
                 </div>
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Action
+                    Type
+                  </span>
+                </div>
+              </td>
+
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+                <div className="flex w-full items-center space-x-2.5">
+                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
+                    Action
                   </span>
                   <span>
                     <svg
@@ -646,19 +462,16 @@ function PlayerTab({ }) {
                   <CustomerInfo
                     key={user._id}
                     UserId={user._id}
-                    UserName={user.username}
-                    MobileNo={user.mobileNumber}
-                    aviatorGamePlay={user.counters.totalMatch}
-                    blackandwhiteGamePlay={user.counters.totalMatch}
+                    UserName={user.name}
+                    password={user.password}
                     MainWallet={user.chips}
-                    WinWallet={user.winningChips}
-                    BonusWallet={user.chips}
                     RegistrationDate={user.createdAt}
                     LastLogin={user.lastLoginDate}
-                    status={user.status ? 'Blocked' : 'Active'}
-                    profileUrl={user.profileUrl}
-                    email={user.email}
+                    status={user.status}
                     uniqueId={user.uniqueId}
+                    authorisedname={user.authorisedname}
+                    authorisedtype={user.authorisedtype}
+                    authorisedid={user.authorisedid}
 
                   />
                 )
@@ -666,19 +479,16 @@ function PlayerTab({ }) {
                   <CustomerInfo
                     key={user._id}
                     UserId={user._id}
-                    UserName={user.username}
-                    MobileNo={user.mobileNumber}
-                    aviatorGamePlay={user.counters.totalMatch}
-                    blackandwhiteGamePlay={user.counters.totalMatch}
+                    UserName={user.name}
+                    password={user.password}
                     MainWallet={user.chips}
-                    WinWallet={user.winningChips}
-                    BonusWallet={user.chips}
                     RegistrationDate={user.createdAt}
                     LastLogin={user.lastLoginDate}
-                    status={user.status ? 'Blocked' : 'Active'}
-                    profileUrl={user.profileUrl}
-                    email={user.email}
+                    status={user.status}
                     uniqueId={user.uniqueId}
+                    authorisedname={user.authorisedname}
+                    authorisedtype={user.authorisedtype}
+                    authorisedid={user.authorisedid}
                   />
                 )
             )}
@@ -699,7 +509,7 @@ function PlayerTab({ }) {
                 className="flex items-center space-x-6 rounded-lg border border-bgray-300 px-2.5 py-[14px] dark:border-darkblack-400"
               >
                 <span className="text-sm font-semibold text-bgray-900 dark:text-bgray-50">
-                {pageSize}
+                  {pageSize}
                 </span>
                 <span>
                   <svg

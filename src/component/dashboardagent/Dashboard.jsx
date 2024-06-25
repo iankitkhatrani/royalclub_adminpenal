@@ -10,18 +10,19 @@ const cookies = new Cookies();
 function Dashboard() {
 
   const context = useContext(offerContext)
-  const { dashboardData } = context
+  const { dashboardDataAdmin } = context
   let apiData = {}
 
+  let [totalUser, settotalUser] = useState('');
 
   useEffect( () => {
     const submitdata = async () => {
     
-      if(cookies.get('logintype')  == "Admin"){
-        apiData = await dashboardData(cookies.get('logintype'))
-      }else{
-        apiData = await dashboardData(cookies.get('LoginUserId'))
-      }
+      apiData = await dashboardDataAdmin(cookies.get('LoginUserId'),cookies.get('logintype'))
+      
+
+      if (apiData.totalUser != undefined)
+        settotalUser(apiData.totalUser)
 
      
   }
@@ -32,7 +33,15 @@ function Dashboard() {
   return (
     <div className="mb-[24px] w-full">
       <div className="grid grid-cols-1 gap-[24px] lg:grid-cols-3">
-        
+      <TotalWidgetCard
+      totalEarnImg={totalEarn}
+      memberImg={memberImg}
+      title="Total Users"
+      amount={totalUser}
+      groth="+ 3.5%"
+      id="totalEarn"
+      link="/transaction"
+    />
         
       </div>
     </div>

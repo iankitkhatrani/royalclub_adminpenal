@@ -188,15 +188,15 @@ function LeftSide() {
               className="w-5 h-5 dark:bg-darkblack-500 focus:ring-transparent rounded-full border border-bgray-300 focus:accent-success-300 text-success-300"
               name="logintype"
               id="logintype"
-              value="Agent"
-              checked={formData.logintype === "Agent"}
+              value="Admin"
+              checked={formData.logintype === "Admin"}
               onChange={OnChange}
             />
             <label
-              htmlFor="Agent"
+              htmlFor="Admin"
               className="text-bgray-900 dark:text-white text-base font-semibold"
             >
-              Agent
+            Admin
             </label>
           </div>
           <div className="flex items-center space-x-3">
@@ -205,15 +205,15 @@ function LeftSide() {
             className="w-5 h-5 dark:bg-darkblack-500 focus:ring-transparent rounded-full border border-bgray-300 focus:accent-success-300 text-success-300"
             name="logintype"
             id="logintype"
-            value="Shop"
-            checked={formData.logintype === "Shop"}
+            value="Agent"
+            checked={formData.logintype === "Agent"}
             onChange={OnChange}
           />
           <label
-            htmlFor="Shop"
+            htmlFor="Agent"
             className="text-bgray-900 dark:text-white text-base font-semibold"
           >
-          Sub Agent
+          Agent
           </label>
         </div>
           

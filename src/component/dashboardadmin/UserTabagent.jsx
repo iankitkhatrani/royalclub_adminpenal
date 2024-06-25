@@ -1,10 +1,8 @@
 import ProtoTypes from "prop-types";
-import CustomerInfo from "./UserInfo";
 import users from "../../data/user";
 import offerContext from '../../context/offerContext'
 import React,{useContext,useEffect,useState,useRef} from 'react';
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
+import CustomerInfo from "./UserInfoagent";
 
 function UserTab({ }) {
 
@@ -27,20 +25,16 @@ function UserTab({ }) {
 
 
   const context = useContext(offerContext)
-  const { latatestUser } = context
+  const { latatestAdmin } = context
 
   
   
 
   useEffect( () => {
     const submitdata = async () => {
-      
-      if(cookies.get('logintype')  == "Admin"){
-        setJsonData(await latatestUser(cookies.get('logintype')))
-      }else{
-        setJsonData(await latatestUser(cookies.get('LoginUserId')))
-      }
+      //setJsonData(await latatestUser())
 
+      setJsonData(await latatestAdmin())
 
     }
   submitdata()
@@ -97,7 +91,7 @@ function UserTab({ }) {
             <td className="inline-block w-[250px] px-6 py-5 lg:w-auto xl:px-0">
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Player Name
+                  Agent Name
                 </span>
                 <span>
                   <svg
@@ -190,14 +184,14 @@ function UserTab({ }) {
               ? index + 1 <= pageSize && (
                   <CustomerInfo
                     key={user._id}
-                    UserName={user.username}
+                    UserName={user.name}
                     RegistrationDate={user.createdAt}
                   />
                 )
               : index < 3 && (
                   <CustomerInfo
                   key={user._id}
-                  UserName={user.username}
+                  UserName={user.name}
                   RegistrationDate={user.createdAt}
                   />
                 )

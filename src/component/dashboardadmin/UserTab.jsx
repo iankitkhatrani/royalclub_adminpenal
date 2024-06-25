@@ -34,13 +34,14 @@ function UserTab({ }) {
 
   useEffect( () => {
     const submitdata = async () => {
-      //setJsonData(await latatestUser())
-
-      if(cookies.get('logintype')  == "SuperAdmin"){
+      
+      if(cookies.get('logintype')  == "Super Admin"){
         setJsonData(await latatestUser(cookies.get('logintype')))
       }else{
         setJsonData(await latatestUser(cookies.get('LoginUserId')))
       }
+
+
     }
   submitdata()
   },[]);
@@ -58,8 +59,7 @@ function UserTab({ }) {
       (!from || registrationDate >= from) &&
       (!to || registrationDate <= to) &&
       (searchTerm === '' ||
-        user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.mobileNumber.includes(searchTerm))
+        user.username.toLowerCase().includes(searchTerm.toLowerCase()))
     );
   });
 
@@ -96,7 +96,7 @@ function UserTab({ }) {
             <td className="inline-block w-[250px] px-6 py-5 lg:w-auto xl:px-0">
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  User Name
+                  Player Name
                 </span>
                 <span>
                   <svg

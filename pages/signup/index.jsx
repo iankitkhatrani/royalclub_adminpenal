@@ -12,7 +12,7 @@ function SignUp() {
         {/* Left */}
         <div className="lg:w-1/2 px-5 xl:pl-12 pt-10">
           <header>
-            <Link to="/" className="">
+            <Link  className="">
               <img src={logoColor} className="block dark:hidden" alt="Logo" />
               <img src={logoWhite} className="hidden dark:block" alt="Logo" />
             </Link>

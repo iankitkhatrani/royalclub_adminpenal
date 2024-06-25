@@ -8,7 +8,7 @@ function PlayerTab({ UserId, gameName }) {
 
   //-------------------------------------------------------------------------------------------------------
   const [active, setActive] = useState(false);
-  const [pageSize, setPageSize] = useState(1);
+  const [pageSize, setPageSize] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
@@ -25,18 +25,14 @@ function PlayerTab({ UserId, gameName }) {
   let [gameHistoryData, setGameHistoryData] = useState([]);
 
   const context = useContext(offerContext)
-  const { GetBlackandWhiteHistoryData, aviatorHistoryData, GetCompleteWithdrawalData, GetCompleteDespositeData, GetRegisterReferralBonusData } = context
+  const { GetBlackandWhiteHistoryData, aviatorHistoryData,GetCompleteTransactionData, GetCompleteWithdrawalData, GetCompleteDespositeData, GetRegisterReferralBonusData } = context
 
 
   useEffect(() => {
     const submitdata = async () => {
       setGameHistoryData([])
-      // <HistoryTable gameName="AviatorGame"/>
-      // <HistoryTable gameName="BlackandWhite"/>
-      // <HistoryTable gameName="Withdrawal"/>
-      // <HistoryTable gameName="Deposit"/>
-      // <HistoryTable gameName="reffrel"/>
-      console.log("gameName ",gameName)
+    
+      console.log("gameName :::::::::::::::::::::",gameName)
       if (gameName == "Withdrawal") {
        
         setGameHistoryData(await GetCompleteWithdrawalData( Botinfo.UserId))
@@ -46,6 +42,9 @@ function PlayerTab({ UserId, gameName }) {
       } else if (gameName == "Deposite") {
 
         setGameHistoryData(await GetCompleteDespositeData( Botinfo.UserId))
+      } else if (gameName == "Transaction") {
+
+        setGameHistoryData(await GetCompleteTransactionData( Botinfo.UserId))
       }
       // else if(gameName == "Withdrawal"){
 
@@ -181,228 +180,45 @@ function PlayerTab({ UserId, gameName }) {
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
               
-              <td className="inline-block w-[250px] px-6 py-5 lg:w-auto xl:px-0">
+              <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Date Time
-                  </span>
-                  <span>
-                    <svg
-                      width="14"
-                      height="15"
-                      viewBox="0 0 14 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M10.332 1.31567V13.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3.66602 13.3157V1.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                    User Name
                   </span>
                 </div>
               </td>
-              <td className="px-6 py-5 xl:px-0">
+              <td className="w-[255px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Name
-                  </span>
-                  <span>
-                    <svg
-                      width="14"
-                      height="15"
-                      viewBox="0 0 14 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M10.332 1.31567V13.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3.66602 13.3157V1.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                    Date and Time 
                   </span>
                 </div>
               </td>
-              <td className="px-6 py-5 xl:px-0">
+              <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Previous Winning Chips	
-                  </span>
-                  <span>
-                    <svg
-                      width="14"
-                      height="15"
-                      viewBox="0 0 14 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M10.332 1.31567V13.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3.66602 13.3157V1.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                  Amount	
                   </span>
                 </div>
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Withdrawal
-                  </span>
-                  <span>
-                    <svg
-                      width="14"
-                      height="15"
-                      viewBox="0 0 14 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M10.332 1.31567V13.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3.66602 13.3157V1.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                 Previous Chips
                   </span>
                 </div>
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Current Winning chips	
+                  Current chips	
                   </span>
-                  <span>
-                    <svg
-                      width="14"
-                      height="15"
-                      viewBox="0 0 14 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M10.332 1.31567V13.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3.66602 13.3157V1.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                </div>
+              </td>
+              <td className="w-[195px] px-6 py-5 xl:px-0">
+                <div className="flex w-full items-center space-x-2.5">
+                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
+                  	Txn Type
                   </span>
                 </div>
               </td>
@@ -411,72 +227,56 @@ function PlayerTab({ UserId, gameName }) {
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                   Type
                   </span>
-                  <span>
-                    <svg
-                      width="14"
-                      height="15"
-                      viewBox="0 0 14 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M10.332 1.31567V13.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3.66602 13.3157V1.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                </div>
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+                <div className="flex w-full items-center space-x-2.5">
+                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
+                  Game Name
                   </span>
                 </div>
               </td>
-           
-              
+
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+                <div className="flex w-full items-center space-x-2.5">
+                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
+                  Transcation Authorise
+                  </span>
+                </div>
+              </td>      
             </tr>
             {usersOnCurrentPage?.map((user, index) =>
               pageSize
                 ? index + 1 <= pageSize && (
                   <CustomerInfo
                     key={user._id}
+                    name={user.name}
                     createdAt={user.createdAt}
-                    uniqueId={user.uniqueId}
-                    oppWinningChips={user.oppWinningChips}
                     trnxAmount={user.trnxAmount}
+                    oppChips={user.oppChips}
                     totalBucket={user.totalBucket}
                     trnxTypeTxt={user.trnxTypeTxt}
+                    trnxType={user.trnxType}
+                    gameType={user.gameType}
+                    authorisedname={user.authorisedname}
+                    authorisedtype={user.authorisedtype}
+
 
                   />
                 )
                 : index < 3 && (
                   <CustomerInfo
                     key={user._id}
+                    name={user.name}
                     createdAt={user.createdAt}
-                    uniqueId={user.uniqueId}
-                    oppWinningChips={user.oppWinningChips}
                     trnxAmount={user.trnxAmount}
+                    oppChips={user.oppChips}
                     totalBucket={user.totalBucket}
                     trnxTypeTxt={user.trnxTypeTxt}
+                    trnxType={user.trnxType}
+                    gameType={user.gameType}
+                    authorisedname={user.authorisedname}
+                    authorisedtype={user.authorisedtype}
 
                   />
                 )

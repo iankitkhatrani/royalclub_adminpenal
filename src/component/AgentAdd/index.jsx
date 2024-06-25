@@ -2,6 +2,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import React, { useState, useContext, useEffect } from 'react';
 import offerContext from '../../context/offerContext';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 function agentAdd() {
 
@@ -22,21 +24,39 @@ function agentAdd() {
 
   let [userInfo, SetuserInfo] = useState({
     name: "",
-    mobileno: "",
     password: "",
-    location: "",
-    status: ""
+    status:true,
+    commission: 0,
+    partnerpercentage: 0,
+    authorisedid :cookies.get('LoginUserId'),
+    authorisedtype: cookies.get('logintype'),
+    authorisedname: cookies.get('email')            
   })
 
 
 
+  // const OnChange = (event) => {
+  //   let { name, value } = event.target;
+  //   SetuserInfo({
+  //     ...userInfo,
+  //     [name]: value,
+  //   });
+  //   console.log("handleChange ::::::::::::::::::::::", userInfo)
+  // };
+
   const OnChange = (event) => {
     let { name, value } = event.target;
+
+    console.log("OnChange :::::::::::",name, value)
+
     SetuserInfo({
       ...userInfo,
-      [name]: value,
+      [name]: value == "inactive"?false:true,
     });
+
+
     console.log("handleChange ::::::::::::::::::::::", userInfo)
+
   };
 
 
@@ -62,8 +82,8 @@ function agentAdd() {
       return false
     }
 
-    if(userInfo.password.length < 8){
-      alert("Invalid password Value leangth Must be 8 characters.")
+    if(userInfo.password.length < 4){
+      alert("Invalid password Value leangth Must be 4 characters.")
       return false
     }
     
@@ -135,13 +155,31 @@ function agentAdd() {
                   htmlFor="robotname"
                   className="text-base text-bgray-600 dark:text-bgray-50  font-medium"
                 >
-                Location
+                Commission
                 </label>
                 <input
                   type="text"
-                  id="location"
-                  placeholder={userInfo.location}
-                  name="location"
+                  id="commission"
+                  placeholder={userInfo.commission}
+                  name="commission"
+                  className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
+                  onChange={handleChange}
+                />
+
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label
+                  htmlFor="robotname"
+                  className="text-base text-bgray-600 dark:text-bgray-50  font-medium"
+                >
+                Partner Percentage
+                </label>
+                <input
+                  type="text"
+                  id="partnerpercentage"
+                  placeholder={userInfo.partnerpercentage}
+                  name="partnerpercentage"
                   className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
                   onChange={handleChange}
                 />
@@ -163,7 +201,7 @@ function agentAdd() {
                     type="radio"
                     value="active"
                     name="status"
-                    checked={userInfo.status === "active"}
+                    checked={userInfo.status === true}
                     onChange={OnChange}
                   />
                   Active
@@ -174,7 +212,7 @@ function agentAdd() {
                     type="radio"
                     value="inactive"
                     name="status"
-                    checked={userInfo.status === "inactive" || userInfo.status === ""}
+                    checked={userInfo.status === false || userInfo.status === ""}
                     onChange={OnChange}
                   />
                   Inactive

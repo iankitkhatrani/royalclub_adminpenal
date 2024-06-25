@@ -125,7 +125,7 @@ function TotalWidgetCard({ title, amount, groth, memberImg, totalEarnImg,link })
       <div className="flex items-end justify-between">
         <div className="flex-1">
           <p className="text-3xl font-bold leading-[48px] text-bgray-900 dark:text-white">
-          ₹{amount}
+          {amount}
           </p>
           <div className="flex items-center space-x-1">
             <span>

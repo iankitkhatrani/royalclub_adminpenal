@@ -8,12 +8,11 @@ import React, { useState, useContext, useEffect } from 'react';
 import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
 
-
-function PlayerInfo({ UserId, UserName,chips, location, createdAt, lastLoginDate,  status,uniqueId,password }) {
+function PlayerInfo({ UserId, UserName,chips, createdAt, lastLoginDate,  status,uniqueId,password,commission,partnerpercentage,authorisedtype,authorisedname }) {
 
   const navigate = useNavigate();
-  const navigateToContacts = (UserId, UserName,chips, location, createdAt, lastLoginDate,  status,uniqueId,password) => {
-    navigate('/agentedit', { state:{ UserId, UserName,chips, location, createdAt, lastLoginDate,  status,uniqueId,password } });
+  const navigateToContacts = (UserId, UserName,chips, createdAt, lastLoginDate,  status,uniqueId,password,commission,partnerpercentage,authorisedtype,authorisedname ) => {
+    navigate('/agentedit', { state:{ UserId, UserName,chips, createdAt, lastLoginDate,  status,uniqueId,password,commission,partnerpercentage,authorisedtype,authorisedname  } });
   }
 
 
@@ -61,7 +60,12 @@ function PlayerInfo({ UserId, UserName,chips, location, createdAt, lastLoginDate
       </td>
       <td className="px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {location}
+          {commission}
+        </p>
+      </td>
+      <td className="px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {partnerpercentage}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
@@ -77,7 +81,19 @@ function PlayerInfo({ UserId, UserName,chips, location, createdAt, lastLoginDate
      
       <td className="px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {status}
+          {status == true ? "Active" : "Deactive"}
+        </p>
+      </td>
+      
+      <td className="px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {authorisedtype}
+        </p>
+      </td>
+
+      <td className="px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {authorisedname}
         </p>
       </td>
 
@@ -91,7 +107,7 @@ function PlayerInfo({ UserId, UserName,chips, location, createdAt, lastLoginDate
             "padding": "5px 10px",
             "cursor": "pointer",
             "border-radius": "4px"
-          }} onClick={() => navigateToContacts( UserId, UserName,chips, location, createdAt, lastLoginDate,  status,uniqueId,password)} >
+          }} onClick={() => navigateToContacts(UserId, UserName,chips, createdAt, lastLoginDate,  status,uniqueId,password,commission,partnerpercentage,authorisedtype,authorisedname )} >
           <img style={{"width": "30px","height": "30px","margin": "30px"}} src={edit} />
           </button>
 
