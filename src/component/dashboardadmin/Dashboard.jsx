@@ -16,6 +16,7 @@ function Dashboard() {
   let [totalUser, settotalUser] = useState('');
   let [totalAgent, settotalAgent] = useState('');
 
+  let [totalChips, settotalChips] = useState('');
 
   useEffect(() => {
     const submitdata = async () => {
@@ -29,6 +30,10 @@ function Dashboard() {
 
       if (apiData.totalAgent != undefined)
         settotalAgent(apiData.totalAgent)
+
+      if (apiData.totalAdminChips != undefined)
+        settotalChips(apiData.totalAdminChips)
+
 
     }
 
@@ -58,6 +63,14 @@ function Dashboard() {
           link="/transaction"
         />
 
+        <TotalWidgetCard
+        totalEarnImg={totalEarn}
+        memberImg={memberImg}
+        title="Total Chips"
+        amount={totalChips}
+        groth="+ 3.5%"
+        id="totalEarn"
+      />
       </div>
     </div>
   );
