@@ -8,11 +8,11 @@ import React, { useState, useContext, useEffect } from 'react';
 import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
                     
-function PlayerInfo({ UserId, UserName,chips, createdAt, lastLoginDate,  status,uniqueId,password,commission,partnerpercentagejanata,partnerpercentageroulette,authorisedtype,authorisedname }) {
+function PlayerInfo({ UserId, UserName,chips, createdAt, lastLoginDate,  status,uniqueId,password,commission,partnerpercentagejanata,partnerpercentageroulette,authorisedtype,authorisedname,numberOfuser }) {
 
   const navigate = useNavigate();
-  const navigateToContacts = (UserId, UserName,chips, createdAt, lastLoginDate,  status,uniqueId,password,commission,partnerpercentagejanata,partnerpercentageroulette,authorisedtype,authorisedname ) => {
-    navigate('/agentedit', { state:{ UserId, UserName,chips, createdAt, lastLoginDate,  status,uniqueId,password,commission,partnerpercentagejanata,partnerpercentageroulette,authorisedtype,authorisedname  } });
+  const navigateToContacts = (UserId, UserName,chips, createdAt, lastLoginDate,  status,uniqueId,password,commission,partnerpercentagejanata,partnerpercentageroulette,authorisedtype,authorisedname,numberOfuser ) => {
+    navigate('/agentedit', { state:{ UserId, UserName,chips, createdAt, lastLoginDate,  status,uniqueId,password,commission,partnerpercentagejanata,partnerpercentageroulette,authorisedtype,authorisedname,numberOfuser  } });
   }
 
 
@@ -46,33 +46,40 @@ function PlayerInfo({ UserId, UserName,chips, createdAt, lastLoginDate,  status,
   return (
     <tr className="border-b border-bgray-300 dark:border-darkblack-400">
       
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <div className="flex w-full items-center space-x-2.5">
           <p className="text-base font-semibold text-bgray-900 dark:text-white">
             {UserName}
           </p>
         </div>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {chips}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {commission}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {partnerpercentagejanata}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {partnerpercentageroulette}
         </p>
       </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {numberOfuser}
+        </p>
+      </td>
+      
+
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
         {formatDateTo12hr(createdAt)}
@@ -84,25 +91,25 @@ function PlayerInfo({ UserId, UserName,chips, createdAt, lastLoginDate,  status,
         </p>
       </td>
      
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {status == true ? "Active" : "Deactive"}
         </p>
       </td>
       
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {authorisedtype}
         </p>
       </td>
 
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {authorisedname}
         </p>
       </td>
 
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <div className="flex justify-center">
           <button styles={{
             "margin": "1px",
@@ -112,7 +119,7 @@ function PlayerInfo({ UserId, UserName,chips, createdAt, lastLoginDate,  status,
             "padding": "5px 10px",
             "cursor": "pointer",
             "border-radius": "4px"
-          }} onClick={() => navigateToContacts(UserId, UserName,chips, createdAt, lastLoginDate,  status,uniqueId,password,commission,partnerpercentage,authorisedtype,authorisedname )} >
+          }} onClick={() => navigateToContacts(UserId, UserName,chips, createdAt, lastLoginDate,  status,uniqueId,password,commission,partnerpercentage,authorisedtype,authorisedname,numberOfuser )} >
           <img style={{"width": "30px","height": "30px","margin": "30px"}} src={edit} />
           </button>
 

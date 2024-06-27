@@ -6,12 +6,15 @@ import PlayerImg from "../../assets/images/icon/player.png";
 
 import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
-                    
-function PlayerInfo({ UserId, UserName,chips, createdAt, lastLoginDate, status, uniqueId, password,commission,partnerpercentagejanata,partnerpercentageroulette }) {
+
+
+
+
+function PlayerInfo({ UserId, UserName, chips, createdAt, lastLoginDate, status, uniqueId, password, commission, partnerpercentagejanata, partnerpercentageroulette, numberOfagent, numberOfuser }) {
 
   const navigate = useNavigate();
-  const navigateToContacts = (UserId, UserName,chips, createdAt, lastLoginDate, status, uniqueId, password,commission,partnerpercentagejanata,partnerpercentageroulette) => {
-    navigate('/adminedit', { state: { UserId, UserName,chips, createdAt, lastLoginDate, status, uniqueId, password,commission,partnerpercentagejanata,partnerpercentageroulette } });
+  const navigateToContacts = (UserId, UserName, chips, createdAt, lastLoginDate, status, uniqueId, password, commission, partnerpercentagejanata, partnerpercentageroulette, numberOfagent, numberOfuser) => {
+    navigate('/adminedit', { state: { UserId, UserName, chips, createdAt, lastLoginDate, status, uniqueId, password, commission, partnerpercentagejanata, partnerpercentageroulette, numberOfagent, numberOfuser } });
   }
 
 
@@ -57,21 +60,32 @@ function PlayerInfo({ UserId, UserName,chips, createdAt, lastLoginDate, status, 
           {chips}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
-      <p className="text-base font-medium text-bgray-900 dark:text-white">
-        {commission}
-      </p>
-    </td>
-    <td className="px-6 py-5 xl:px-0">
-      <p className="text-base font-medium text-bgray-900 dark:text-white">
-        {partnerpercentagejanata}
-      </p>
-    </td>
-    <td className="px-6 py-5 xl:px-0">
-      <p className="text-base font-medium text-bgray-900 dark:text-white">
-        {partnerpercentageroulette}
-      </p>
-    </td>
+
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {commission}
+        </p>
+      </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {partnerpercentagejanata}
+        </p>
+      </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {partnerpercentageroulette}
+        </p>
+      </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {numberOfagent}
+        </p>
+      </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {numberOfuser}
+        </p>
+      </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
           {formatDateTo12hr(createdAt)}
@@ -85,7 +99,7 @@ function PlayerInfo({ UserId, UserName,chips, createdAt, lastLoginDate, status, 
 
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {status == true?"Active":"DeActive"}
+          {status == true ? "Active" : "DeActive"}
         </p>
       </td>
 
@@ -99,7 +113,7 @@ function PlayerInfo({ UserId, UserName,chips, createdAt, lastLoginDate, status, 
             "padding": "5px 10px",
             "cursor": "pointer",
             "border-radius": "4px"
-          }} onClick={() => navigateToContacts(UserId, UserName,chips, createdAt, lastLoginDate, status, uniqueId, password,commission,partnerpercentagejanata,partnerpercentageroulette)} >
+          }} onClick={() => navigateToContacts(UserId, UserName, chips, createdAt, lastLoginDate, status, uniqueId, password, commission, partnerpercentagejanata, partnerpercentageroulette, numberOfagent, numberOfuser)} >
             <img style={{ "width": "30px", "height": "30px", "margin": "30px" }} src={edit} />
           </button>
 
@@ -116,7 +130,7 @@ function PlayerInfo({ UserId, UserName,chips, createdAt, lastLoginDate, status, 
 
           </button>
 
-        
+
 
         </div>
       </td>

@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import ProtoTypes from "prop-types";
 import CustomerInfo from "./PlayerInfo";
 import offerContext from '../../context/offerContext';
-import {useNavigate,useLocation} from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
@@ -30,7 +30,7 @@ function PlayerTab({ }) {
   //console.log("location ", location.state)
   const AgentInfo = location.state;
 
-  console.log("AgentInfo ",AgentInfo)
+  console.log("AgentInfo ", AgentInfo)
 
   let [userData, setUserData] = useState([]);
   const context = useContext(offerContext)
@@ -38,14 +38,14 @@ function PlayerTab({ }) {
 
   useEffect(() => {
     const submitdata = async () => {
-      if(AgentInfo != undefined && AgentInfo.UserId != undefined){
+      if (AgentInfo != undefined && AgentInfo.UserId != undefined) {
         setUserData(await ShopList(AgentInfo.UserId))
-      }else if(cookies.get('logintype')  == "SuperAdmin"){
+      } else if (cookies.get('logintype') == "SuperAdmin") {
         setUserData(await ShopList(cookies.get('logintype')))
-      }else{
+      } else {
         setUserData(await ShopList(cookies.get('LoginUserId')))
       }
-      console.log("userData ::::::::::::::",userData)
+      console.log("userData ::::::::::::::", userData)
     }
     submitdata()
   }, []);
@@ -53,7 +53,7 @@ function PlayerTab({ }) {
   //--------------------------- Paggeation and No Of Pages ------------------------------------
   // Filter the user data based on date range and search term
   const filteredUsers = userData.filter((user) => {
-    
+
     const registrationDate = new Date(user.createdAt);
     const from = fromDate ? new Date(fromDate) : null;
     const to = toDate ? new Date(toDate) : null;
@@ -138,7 +138,7 @@ function PlayerTab({ }) {
             value={fromDate}
             onChange={(e) => setFromDate(e.target.value)}
           />
-          
+
           <input
             type="date"
             placeholder="To Date"
@@ -147,10 +147,10 @@ function PlayerTab({ }) {
             style={{ marginLeft: "1rem" }}
           />
           <button aria-label="none"
-          className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
+            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
 
           <button aria-label="none"
-          className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={() => navigateToUserRegister()} >Admin Add</button>
+            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={() => navigateToUserRegister()} >Admin Add</button>
 
         </div>
       </div>
@@ -158,7 +158,7 @@ function PlayerTab({ }) {
         <table className="w-full">
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
-              
+
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
@@ -166,31 +166,6 @@ function PlayerTab({ }) {
                   </span>
                 </div>
               </td>
-
-              <td className="px-6 py-5 xl:px-0">
-                <div className="flex items-center space-x-2.5">
-                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Commission
-                  </span>
-                </div>
-              </td>
-
-              <td className="px-6 py-5 xl:px-0">
-                <div className="flex items-center space-x-2.5">
-                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Partner percentage Janta
-                  </span>
-                </div>
-              </td>
-
-              <td className="px-6 py-5 xl:px-0">
-                <div className="flex items-center space-x-2.5">
-                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Partner percentage Roulette
-                  </span>
-                </div>
-              </td>
-              
               <td className="w-[130px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
@@ -198,31 +173,66 @@ function PlayerTab({ }) {
                   </span>
                 </div>
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0">
-                <div className="flex w-full items-center space-x-2.5">
+              <td className="w-[130px] px-6 py-5 xl:px-0">
+                <div className="flex items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Registration Date
+                    Commission
+                  </span>
+                </div>
+              </td>
+              <td className="w-[130px] px-6 py-5 xl:px-0">
+                <div className="flex items-center space-x-2.5">
+                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
+                    Partner percentage Janta
+                  </span>
+                </div>
+              </td>
+              <td className="w-[130px] px-6 py-5 xl:px-0">
+                <div className="flex items-center space-x-2.5">
+                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
+                    Partner percentage Roulette
                   </span>
                 </div>
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Last Login
+                    Total Agent
                   </span>
                 </div>
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Status
+                    Total User
                   </span>
                 </div>
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Action
+                    Registration Date
+                  </span>
+                </div>
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+                <div className="flex w-full items-center space-x-2.5">
+                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
+                    Last Login
+                  </span>
+                </div>
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+                <div className="flex w-full items-center space-x-2.5">
+                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
+                    Status
+                  </span>
+                </div>
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+                <div className="flex w-full items-center space-x-2.5">
+                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
+                    Action
                   </span>
                 </div>
               </td>
@@ -235,6 +245,9 @@ function PlayerTab({ }) {
                     UserId={user._id}
                     UserName={user.name}
                     chips={user.chips}
+
+
+
                     createdAt={user.createdAt}
                     lastLoginDate={user.lastLoginDate}
                     status={user.status}
@@ -242,6 +255,8 @@ function PlayerTab({ }) {
                     commission={user.commission}
                     partnerpercentagejanata={user.partnerpercentagejanata}
                     partnerpercentageroulette={user.partnerpercentageroulette}
+                    numberOfagent={user.numberOfagent}
+                    numberOfuser={user.numberOfuser}
                   />
                 )
                 : index < 3 && (
@@ -250,6 +265,8 @@ function PlayerTab({ }) {
                     UserId={user._id}
                     UserName={user.name}
                     chips={user.chips}
+
+
                     createdAt={user.createdAt}
                     lastLoginDate={user.lastLoginDate}
                     status={user.status}
@@ -258,6 +275,8 @@ function PlayerTab({ }) {
                     commission={user.commission}
                     partnerpercentagejanata={user.partnerpercentagejanata}
                     partnerpercentageroulette={user.partnerpercentageroulette}
+                    numberOfagent={user.numberOfagent}
+                    numberOfuser={user.numberOfuser}
                   />
                 )
             )}
@@ -278,7 +297,7 @@ function PlayerTab({ }) {
                 className="flex items-center space-x-6 rounded-lg border border-bgray-300 px-2.5 py-[14px] dark:border-darkblack-400"
               >
                 <span className="text-sm font-semibold text-bgray-900 dark:text-bgray-50">
-                {pageSize}
+                  {pageSize}
                 </span>
                 <span>
                   <svg
