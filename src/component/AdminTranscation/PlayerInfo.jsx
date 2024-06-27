@@ -56,13 +56,14 @@ function PlayerInfo({ UserId, name, DateandTime, trnxAmount, chips, trnxTypeTxt 
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {authorisedname}
+        {authorisedname != "" ?  authorisedname+" / "+authorisedtype :""}
         </p>
       </td>
       
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {trackname}
+          
+          {trackname != "" ?  trackname+" / "+type :""}
         </p>
       </td>
       

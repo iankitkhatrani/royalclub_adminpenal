@@ -190,7 +190,15 @@ function PlayerTab({ }) {
               <td className="px-6 py-5 xl:px-0">
                 <div className="flex items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Partner percentage
+                  Partner percentage Janta
+                  </span>
+                </div>
+              </td>
+
+              <td className="px-6 py-5 xl:px-0">
+                <div className="flex items-center space-x-2.5">
+                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
+                  Partner percentage Roulette
                   </span>
                 </div>
               </td>
@@ -253,7 +261,9 @@ function PlayerTab({ }) {
                     uniqueId={user.uniqueId}
                     password={user.password}
                     commission={user.commission}
-                    partnerpercentage={user.partnerpercentage}
+                    partnerpercentagejanata={user.partnerpercentagejanata}
+                    partnerpercentageroulette={user.partnerpercentageroulette}
+
                     authorisedtype={user.authorisedtype}
                     authorisedname={user.authorisedname}
                   />
@@ -270,7 +280,8 @@ function PlayerTab({ }) {
                     uniqueId={user.uniqueId}
                     password={user.password}
                     commission={user.commission}
-                    partnerpercentage={user.partnerpercentage}
+                    partnerpercentagejanata={user.partnerpercentagejanata}
+                    partnerpercentageroulette={user.partnerpercentageroulette}
                     authorisedtype={user.authorisedtype}
                     authorisedname={user.authorisedname}
 

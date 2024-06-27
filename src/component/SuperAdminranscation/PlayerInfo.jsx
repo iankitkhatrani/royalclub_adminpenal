@@ -5,15 +5,10 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 
-function PlayerInfo({ UserId, name, DateandTime, trnxAmount, chips, trnxTypeTxt ,
-  authorisedid ,authorisedtype,authorisedname,id,type,trackname,userid}) {
+function PlayerInfo({ UserId, DateandTime, trnxAmount, trnxTypeTxt,id,type,trackname,userid}) {
 
   const context = useContext(offerContext)
   const { host } = context
-
-  const styles = {
-    backgroundColor: status == -1 ? "red":status == 0 ? "green":"green"
-  };
 
   function formatDateTo12hr(dateTimeStr) {
     const dateTime = new Date(dateTimeStr);
@@ -29,15 +24,12 @@ function PlayerInfo({ UserId, name, DateandTime, trnxAmount, chips, trnxTypeTxt 
     return formattedDate;
   }
 
+
   return (
     <tr className="border-b border-bgray-300 dark:border-darkblack-400">
 
+     
       <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {name}
-        </p>
-      </td>
-      <td className="w-[195px] px-6 py-5 xl:px-0">
           <p className="text-base font-semibold text-bgray-900 dark:text-white">
             {formatDateTo12hr(DateandTime)}
           </p>
@@ -48,26 +40,16 @@ function PlayerInfo({ UserId, name, DateandTime, trnxAmount, chips, trnxTypeTxt 
         </p>
       </td>
       
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-semibold text-bgray-900 dark:text-white">
-        ₹{chips}
-        </p>
-      </td>
-   
-      <td className="w-[165px] px-6 py-5 xl:px-0">
+      <td className="w-[195px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
         {trnxTypeTxt} 
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-        {authorisedname != "" ?  authorisedname+" / "+authorisedtype :""}
         </p>
       </td>
       
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-        {trackname != "" ?  trackname+" / "+type :""}
+          
+          {trackname != "" ?  trackname+" / "+type :""}
         </p>
       </td>
       

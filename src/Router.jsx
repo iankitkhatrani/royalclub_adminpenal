@@ -71,6 +71,8 @@ import BetHistoryinfo from './pages/BetHistory'
 
 import Chnagepwd from './pages/Chnagepwd'
 import SubAgentTranscation from './pages/SubAgentTranscation'
+import SuperAdminTranscation from './pages/SuperAdminTranscation'
+
 import AgentTranscation from './pages/AgentTranscation'
 import AdminTranscation from './pages/AdminTranscation'
 
@@ -98,6 +100,10 @@ const router = createBrowserRouter([
       {
         path: "/SubAgentTranscation",
         element: <SubAgentTranscation />,
+      },
+      {
+        path: "/SuperAdminTranscation",
+        element: <SuperAdminTranscation />,
       },
       {
         path: "/betHistory",

@@ -12,6 +12,16 @@ function Dashboard() {
   let apiData = {}
 
   let [totalUser, settotalUser] = useState('');
+  let [totalAdmin, settotalAdmin] = useState('');
+  let [totalAgent, settotalAgent] = useState('');
+
+
+  let[totalteenpatti, setTotalteenpatti] = useState('');
+  let [totalrummy, settotalTotalrummy] = useState('');
+  let [totalludo, setTotalludo] = useState('');
+  let [totaljanta, setTotaljanta] = useState('');
+  let [totalRoulette, setTotalRoulette] = useState('');
+
   let [totalDeposit, settotalDeposit] = useState('');
   let [totalWithdraw, settotalWithdraw] = useState('');
   let [todayDeposit, settodayDeposit] = useState('');
@@ -21,9 +31,30 @@ function Dashboard() {
   useEffect( () => {
     const submitdata = async () => {
       apiData = await dashboardData()
-      
+
+      if(apiData.totalteenpatti != undefined)
+        setTotalteenpatti(apiData.totalteenpatti)
+
+      if(apiData.totalrummy != undefined)
+        settotalTotalrummy(apiData.totalrummy)
+
+      if(apiData.totalludo != undefined)
+        setTotalludo(apiData.totalludo)
+
+      if(apiData.totaljanta != undefined)
+        setTotaljanta(apiData.totaljanta)
+
+      if(apiData.totalRoulette != undefined)
+        setTotalRoulette(apiData.totalRoulette)
+
       if(apiData.totalUser != undefined)
-      settotalUser(apiData.totalUser)
+        settotalUser(apiData.totalUser)
+
+      if(apiData.totalAdmin != undefined)
+        settotalAdmin(apiData.totalAdmin)
+
+      if(apiData.totalAgent != undefined)
+        settotalAgent(apiData.totalAgent)
 
       if(apiData.totalDeposit != undefined)
       settotalDeposit(apiData.totalDeposit)
@@ -53,11 +84,78 @@ function Dashboard() {
         <TotalWidgetCard
           totalEarnImg={totalEarn}
           memberImg={memberImg}
+          title="Total Admin"
+          amount={totalAdmin}
+          groth="+ 3.5%"
+          id="totalEarn"
+        />
+
+        <TotalWidgetCard
+          totalEarnImg={totalEarn}
+          memberImg={memberImg}
+          title="Total Agent"
+          amount={totalAgent}
+          groth="+ 3.5%"
+          id="totalEarn"
+        />
+
+
+        <TotalWidgetCard
+          totalEarnImg={totalEarn}
+          memberImg={memberImg}
           title="Total Users"
           amount={totalUser}
           groth="+ 3.5%"
           id="totalEarn"
         />
+
+        <TotalWidgetCard
+          totalEarnImg={totalEarn}
+          memberImg={memberImg}
+          title="Commission Teenpatti"
+          amount={totalteenpatti}
+          groth="+ 3.5%"
+          id="totalSpending"
+        />
+
+        <TotalWidgetCard
+          totalEarnImg={totalEarn}
+          memberImg={memberImg}
+          title="Commission Rummy"
+          amount={totalrummy}
+          groth="+ 3.5%"
+          id="totalSpending"
+        />
+
+        <TotalWidgetCard
+          totalEarnImg={totalEarn}
+          memberImg={memberImg}
+          title="Commission Ludo"
+          amount={totalludo}
+          groth="+ 3.5%"
+          id="totalSpending"
+        />
+
+        <TotalWidgetCard
+          totalEarnImg={totalEarn}
+          memberImg={memberImg}
+          title="Janta"
+          amount={totaljanta}
+          groth="+ 3.5%"
+          id="totalSpending"
+        />
+
+        <TotalWidgetCard
+          totalEarnImg={totalEarn}
+          memberImg={memberImg}
+          title="Roulette"
+          amount={totalRoulette}
+          groth="+ 3.5%"
+          id="totalSpending"
+        />
+
+
+
         <TotalWidgetCard
           totalEarnImg={totalEarn}
           memberImg={memberImg}

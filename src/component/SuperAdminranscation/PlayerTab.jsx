@@ -10,6 +10,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
+
 function PlayerTab({  }) {
   //-------------------------------------------------------------------------------------------------------
   const [active, setActive] = useState(false);
@@ -25,47 +26,24 @@ function PlayerTab({  }) {
   }
   //------------------------------------------------------------------------------------------------------------
 
+
   let [userData, setUserData] = useState([]);
 
 
   const context = useContext(offerContext)
-  const { AgentTranscationData } = context
+  const { SuperAdminTranscationData } = context
 
   const location = useLocation();
   //console.log("location ", location.state)
-  const AgentInfo = location.state;
+  const adminInfo = location.state;
 
-  console.log("agent trascation  AgentInfo ::::::::::::::::::::::",AgentInfo)
+  console.log("adminInfo ::::::::::::::::::::::::::::::::",adminInfo)
 
   useEffect(() => {
     const submitdata = async () => {
-
-     
-      if(AgentInfo != undefined && AgentInfo != null && AgentInfo.UserId != undefined){
-        setUserData(await AgentTranscationData(AgentInfo.UserId,"Agent"))
-      } else if(cookies.get('logintype') == "SuperAdmin"){ 
-        setUserData(await AgentTranscationData(undefined,cookies.get('logintype')))
-      } else if(cookies.get('logintype') == "Agent"){
-        setUserData(await AgentTranscationData(cookies.get('LoginUserId'),cookies.get('logintype')))
-      }
       
-
-      // if (AgentInfo != undefined && AgentInfo != null && AgentInfo.UserId != undefined) {
-
-      //   setUserData(await AgentTranscationData(AgentInfo.UserId,"Agent"))
-
-
-      // }else if (cookies.get('logintype') == "Admin") {
-        
-      //   setUserData(await AgentTranscationData("id", cookies.get('logintype')))
-
-      // } else {
-        
-      //   setUserData(await AgentTranscationData(cookies.get('LoginUserId'), cookies.get('logintype')))
-
-      // }
-
-
+        setUserData(await SuperAdminTranscationData(undefined,cookies.get('logintype')))
+      
       
     }
     submitdata()
@@ -226,13 +204,7 @@ function PlayerTab({  }) {
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
 
-              <td className="w-[165px] px-6 py-5 xl:px-0">
-                <div className="flex w-full items-center space-x-2.5">
-                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Agent Name
-                  </span>
-                </div>
-              </td>
+              
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
@@ -240,6 +212,7 @@ function PlayerTab({  }) {
                   </span>
                 </div>
               </td>
+
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
@@ -247,15 +220,9 @@ function PlayerTab({  }) {
                   </span>
                 </div>
               </td>
+
              
-              <td className="w-[165px] px-6 py-5 xl:px-0">
-                <div className="flex w-full items-center space-x-2.5">
-                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Current Chips
-                  </span>
-                </div>
-              </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0">
+              <td className="w-[195px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                   Txn Type
@@ -263,14 +230,7 @@ function PlayerTab({  }) {
                 </div>
               </td>
              
-              <td className="w-[165px] px-6 py-5 xl:px-0">
-                <div className="flex w-full items-center space-x-2.5">
-                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Authorise Name
-                  </span>
-                </div>
-              </td>
-              
+             
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
@@ -286,36 +246,31 @@ function PlayerTab({  }) {
                 ? index + 1 <= pageSize && (
                   <CustomerInfo
                     key={user._id}
-                    name={user.name}
                     UserId={user._id}
                     DateandTime={user.createdAt}
                     trnxAmount={user.trnxAmount}
-                    chips={user.totalBucket}
+                  
                     trnxTypeTxt={user.trnxTypeTxt}
-                    authorisedid = {user.authorisedid}
-                    authorisedtype = {user.authorisedtype}
-                    authorisedname = {user.authorisedname}
+                  
                     id = {user.id}
                     type = {user.type}
-                    trackname = {user.trackname}
+                    trackname = {user.name}
                     userid={user.adminId}
                      />
                 )
                 : index < 3 && (
                   <CustomerInfo
                     key={user._id}
-                    name={user.name}
+                   
                     UserId={user._id}
                     DateandTime={user.createdAt}
                     trnxAmount={user.trnxAmount}
-                    chips={user.totalBucket}
+                    
                     trnxTypeTxt={user.trnxTypeTxt}
-                    authorisedid = {user.authorisedid}
-                    authorisedtype = {user.authorisedtype}
-                    authorisedname = {user.authorisedname}
+                    
                     id = {user.id}
                     type = {user.type}
-                    trackname = {user.trackname}
+                    trackname = {user.name}
                     userid={user.adminId}
                   />
                 )

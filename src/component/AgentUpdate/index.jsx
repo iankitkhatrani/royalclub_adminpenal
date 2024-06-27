@@ -30,7 +30,8 @@ function agentUpdate() {
     password: "",
     status:"",
     commission: "",
-    partnerpercentage: ""
+    partnerpercentagejanata: 0,
+    partnerpercentageroulette: 0
 
   })
 
@@ -43,7 +44,8 @@ function agentUpdate() {
         password: Botinfo.password,
         status:Botinfo.status,
         commission: Botinfo.commission,
-        partnerpercentage: Botinfo.partnerpercentage
+        partnerpercentagejanata: Botinfo.partnerpercentagejanata,
+        partnerpercentageroulette: Botinfo.partnerpercentageroulette,
       })
 
     }
@@ -234,13 +236,32 @@ function agentUpdate() {
                   htmlFor="robotname"
                   className="text-base text-bgray-600 dark:text-bgray-50  font-medium"
                 >
-                Partner Percentage
+                Partner Percentage Janta
                 </label>
                 <input
                   type="text"
-                  id="partnerpercentage"
-                  placeholder={userInfo.partnerpercentage}
-                  name="partnerpercentage"
+                  id="partnerpercentagejanata"
+                  placeholder={userInfo.partnerpercentagejanata}
+                  name="partnerpercentagejanata"
+                  className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
+                  onChange={handleChange}
+                />
+
+              </div>
+
+
+              <div className="flex flex-col gap-2">
+                <label
+                  htmlFor="robotname"
+                  className="text-base text-bgray-600 dark:text-bgray-50  font-medium"
+                >
+                Partner Percentage Roulette
+                </label>
+                <input
+                  type="text"
+                  id="partnerpercentageroulette"
+                  placeholder={userInfo.partnerpercentageroulette}
+                  name="partnerpercentageroulette"
                   className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
                   onChange={handleChange}
                 />

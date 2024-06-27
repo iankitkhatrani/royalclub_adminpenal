@@ -887,6 +887,38 @@ const OfferState = (props) => {
         }
     }
 
+
+    const SuperAdminTranscationData = async (id,type) => {
+        try {
+            console.log("PlayerList :::::::", `${host}/admin/usertransction/SuperAdminTranscationData`)
+            const response = await fetch(`${host}/admin/usertransction/SuperAdminTranscationData`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                }
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return []
+            } else {
+                return json.DepositeList
+            }
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+
+    
+
     //============================================================================
 
     // History  User 
@@ -2907,7 +2939,7 @@ const OfferState = (props) => {
             GetGameCom, GameComSet, GetRouletteHistoryData,
             GetSpinnerHistoryData, GetSoratHistoryData, GetandarbaharHistoryData, GetOneToTwelveHistoryData, Chnageidpwd, blockandunblock,
             agentAddMoney, agentDeductMoney, adminAddMoney, adminDeductMoney,
-            SubAgentTranscationData,AgentTranscationData,AdminTranscationData,TableList,TableDelete
+            SubAgentTranscationData,AgentTranscationData,AdminTranscationData,SuperAdminTranscationData,TableList,TableDelete
         }}>
             {props.children}
         </offerContext.Provider>)

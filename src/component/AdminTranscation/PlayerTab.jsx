@@ -14,7 +14,7 @@ const cookies = new Cookies();
 function PlayerTab({  }) {
   //-------------------------------------------------------------------------------------------------------
   const [active, setActive] = useState(false);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(25);
   const [currentPage, setCurrentPage] = useState(1);
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
@@ -41,10 +41,15 @@ function PlayerTab({  }) {
 
   useEffect(() => {
     const submitdata = async () => {
-      if(adminInfo.UserId != undefined){
+
+     
+
+      if(adminInfo != undefined && adminInfo.UserId != undefined){
         setUserData(await AdminTranscationData(adminInfo.UserId,"Admin"))
-      } else {
+      } else if(cookies.get('logintype') == "SuperAdmin"){
         setUserData(await AdminTranscationData(undefined,cookies.get('logintype')))
+      } else if(cookies.get('logintype') == "Admin"){
+        setUserData(await AdminTranscationData(cookies.get('LoginUserId'),cookies.get('logintype')))
       }
       
     }
@@ -248,7 +253,7 @@ function PlayerTab({  }) {
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Super Admin Name
+                    Transcation Authorise
                   </span>
                 </div>
               </td>
