@@ -80,11 +80,14 @@ import TableTranscation from './pages/tableManagment'
 
 
 
+
+
 const router = createBrowserRouter([
   {
     path: "/",
     Component: Layout,
     children: [
+     
       {
         path: "/TableTranscation",
         element: <TableTranscation />,
