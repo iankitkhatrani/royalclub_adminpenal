@@ -31,7 +31,7 @@
     "web-vitals": "^4.2.3"
   },
   "scripts": {
-    "start": "set PORT=3011 && react-scripts start",
+    "start": "set PORT=5177 && react-scripts start",
     "build:dev": "react-scripts --max_old_space_size=8096 build",
     "build": "react-scripts build",
     "test": "react-scripts test",
